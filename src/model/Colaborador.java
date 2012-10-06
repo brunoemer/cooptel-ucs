@@ -1,6 +1,7 @@
 package model;
 
 public class Colaborador {
+	private int id;
 	private String cpf;
 	private String nome;
 	private String endereco;
@@ -15,12 +16,21 @@ public class Colaborador {
 		this.ativo = false;
 	}
 	
-	public Colaborador(String cpf, String nome, String endereco, String email, boolean ativo){
+	public Colaborador(String cpf, String nome, String endereco, String email, boolean ativo, int id){
 		this.cpf = cpf;
 		this.nome = nome;
 		this.endereco = endereco;
 		this.email = email;
 		this.ativo = ativo;
+		this.id = id;
+	}
+
+	public int getId(){
+		return this.id;
+	}
+	
+	public void setId(int id){
+		this.id = id;
 	}
 	
 	public String getCpf(){
