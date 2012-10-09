@@ -27,7 +27,7 @@ import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 
 public class FrameCadastroAcomodacao extends JFrame{
-	private GridBagConstraints labelConstraints, textFieldConstraints;
+	private GridBagConstraints labelConstraints, fieldConstraints;
 	private JLabel labelDescricao, labelEndereco, labelTipo, labelCafeDaManha, 
 				   labelValorDaDiaria, labelDisponibilidade, labelDisponibilidadeAte, 
 				   labelFotos, labelFotoVistaExterna, labelFotoVistaInterna1, labelFotoVistaInterna2,
@@ -38,27 +38,27 @@ public class FrameCadastroAcomodacao extends JFrame{
 	private JButton buttonOK;
 	
 	public FrameCadastroAcomodacao(){
-		this.Inicializar();
+		this.inicializar();
 	}
 	
-	private void Inicializar(){
+	private void inicializar(){
 		this.setTitle("Cadastro de Acomodação");
 		this.setSize(700, 950);
 		
-		this.InicializarConstraints();
+		this.inicializarConstraints();
 		this.setLayout(new GridBagLayout());
-		this.InicializarCamposDescricao();
-		this.InicializarCamposEndereco();
-		this.InicializarCamposTipo();
-		this.InicializarCamposCafeDaManha();
-		this.InicializarCamposValorDaDiaria();
-		this.InicializarCamposDisponbilidade();
-		this.InicializarCamposFotos();
-		this.InicializarCamposMapa();
-		this.InicializarBotoes();
+		this.inicializarCamposDescricao();
+		this.inicializarCamposEndereco();
+		this.inicializarCamposTipo();
+		this.inicializarCamposCafeDaManha();
+		this.inicializarCamposValorDaDiaria();
+		this.inicializarCamposDisponbilidade();
+		this.inicializarCamposFotos();
+		this.inicializarCamposMapa();
+		this.inicializarBotoes();
 	}
 
-	private void InicializarConstraints(){
+	private void inicializarConstraints(){
 		this.labelConstraints = new GridBagConstraints();
 		this.labelConstraints.fill = GridBagConstraints.HORIZONTAL;
 		this.labelConstraints.gridx = 0;
@@ -66,36 +66,36 @@ public class FrameCadastroAcomodacao extends JFrame{
 		this.labelConstraints.insets = new Insets(10, 5, 0, 10);
 		this.labelConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
 		
-		this.textFieldConstraints = new GridBagConstraints();
-		this.textFieldConstraints.fill = GridBagConstraints.HORIZONTAL;
-		this.textFieldConstraints.gridx = 1;
-		this.textFieldConstraints.gridy = 0;
-		this.textFieldConstraints.weightx = 1.0;
-		this.textFieldConstraints.insets = new Insets(10, 5, 0, 10);
-		this.textFieldConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
+		this.fieldConstraints = new GridBagConstraints();
+		this.fieldConstraints.fill = GridBagConstraints.HORIZONTAL;
+		this.fieldConstraints.gridx = 1;
+		this.fieldConstraints.gridy = 0;
+		this.fieldConstraints.weightx = 1.0;
+		this.fieldConstraints.insets = new Insets(10, 5, 0, 10);
+		this.fieldConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
 	}
 	
-	private void InicializarCamposDescricao(){
+	private void inicializarCamposDescricao(){
 		this.labelDescricao = new JLabel("Descrição");
 		this.add(this.labelDescricao, this.labelConstraints);
 		this.labelConstraints.gridy++;
 		
 		this.textDescricao = new JTextField();
-		this.add(this.textDescricao, this.textFieldConstraints);
-		this.textFieldConstraints.gridy++;
+		this.add(this.textDescricao, this.fieldConstraints);
+		this.fieldConstraints.gridy++;
 	}
 	
-	private void InicializarCamposEndereco() {
+	private void inicializarCamposEndereco() {
 		this.labelEndereco = new JLabel("Endereço");
 		this.add(this.labelEndereco, this.labelConstraints);
 		this.labelConstraints.gridy++;
 		
 		this.textEndereco = new JTextField();
-		this.add(this.textEndereco, this.textFieldConstraints);
-		this.textFieldConstraints.gridy++;
+		this.add(this.textEndereco, this.fieldConstraints);
+		this.fieldConstraints.gridy++;
 	}
 	
-	private void InicializarCamposTipo(){
+	private void inicializarCamposTipo(){
 		this.labelTipo = new JLabel("Tipo");
 		this.add(this.labelTipo, this.labelConstraints);
 		this.labelConstraints.gridy++;
@@ -111,11 +111,11 @@ public class FrameCadastroAcomodacao extends JFrame{
 		panel.add(this.radioDuplo);
 		panel.add(this.radioFamilia);
 		
-		this.add(panel, this.textFieldConstraints);
-		this.textFieldConstraints.gridy++;
+		this.add(panel, this.fieldConstraints);
+		this.fieldConstraints.gridy++;
 	}
 
-	private void InicializarCamposCafeDaManha(){
+	private void inicializarCamposCafeDaManha(){
 		this.labelCafeDaManha = new JLabel("Café da Manhã");
 		this.add(this.labelCafeDaManha, this.labelConstraints);
 		this.labelConstraints.gridy++;
@@ -129,25 +129,25 @@ public class FrameCadastroAcomodacao extends JFrame{
 		panel.add(this.radioSim);
 		panel.add(this.radioNao);
 		
-		this.add(panel, this.textFieldConstraints);
-		this.textFieldConstraints.gridy++;
+		this.add(panel, this.fieldConstraints);
+		this.fieldConstraints.gridy++;
 	}
 
-	private void InicializarCamposValorDaDiaria(){
+	private void inicializarCamposValorDaDiaria(){
 		this.labelValorDaDiaria = new JLabel("Valor da Diária");
 		this.add(this.labelValorDaDiaria, this.labelConstraints);
 		this.labelConstraints.gridy++;
 		
-		this.textFieldConstraints.fill = GridBagConstraints.NONE;
-		this.textFieldConstraints.ipadx = 100;
+		this.fieldConstraints.fill = GridBagConstraints.NONE;
+		this.fieldConstraints.ipadx = 100;
 		this.textValorDaDiaria = new JTextField();
-		this.add(this.textValorDaDiaria, this.textFieldConstraints);
-		this.textFieldConstraints.fill = GridBagConstraints.HORIZONTAL;
-		this.textFieldConstraints.ipadx = 0;
-		this.textFieldConstraints.gridy++;
+		this.add(this.textValorDaDiaria, this.fieldConstraints);
+		this.fieldConstraints.fill = GridBagConstraints.HORIZONTAL;
+		this.fieldConstraints.ipadx = 0;
+		this.fieldConstraints.gridy++;
 	}
 	
-	private void InicializarCamposDisponbilidade(){
+	private void inicializarCamposDisponbilidade(){
 		this.labelDisponibilidade = new JLabel("Disponibilidade");
 		this.add(this.labelDisponibilidade, this.labelConstraints);
 		this.labelConstraints.gridy++;
@@ -163,11 +163,11 @@ public class FrameCadastroAcomodacao extends JFrame{
 		panel.add(this.labelDisponibilidadeAte);
 		panel.add(dateFimDisponibilidade, this.labelConstraints);
 		
-		this.add(panel, this.textFieldConstraints);
-		this.textFieldConstraints.gridy++;
+		this.add(panel, this.fieldConstraints);
+		this.fieldConstraints.gridy++;
 	}
 	
-	private void InicializarCamposFotos(){
+	private void inicializarCamposFotos(){
 		this.labelFotos = new JLabel("Fotos");
 		this.add(this.labelFotos, this.labelConstraints);
 		this.labelConstraints.gridy++;
@@ -200,30 +200,30 @@ public class FrameCadastroAcomodacao extends JFrame{
 		constraints.gridx++;
 		panel.add(this.labelFotoVistaInterna2, constraints);
 		
-		this.add(panel, this.textFieldConstraints);
-		this.textFieldConstraints.gridy++;
+		this.add(panel, this.fieldConstraints);
+		this.fieldConstraints.gridy++;
 	}
 
-	private void InicializarCamposMapa(){
+	private void inicializarCamposMapa(){
 		this.labelMapa = new JLabel("Mapa");
 		this.add(this.labelMapa, this.labelConstraints);
 		this.labelConstraints.gridy++;
 		
-		this.textFieldConstraints.fill = GridBagConstraints.NONE;
+		this.fieldConstraints.fill = GridBagConstraints.NONE;
 		ImageIcon icon = new ImageIcon("Mapa.png");
 		this.labelImagemMapa = new JLabel(icon);
 		this.labelImagemMapa.setBorder(new LineBorder(Color.BLACK));
-		this.add(this.labelImagemMapa, this.textFieldConstraints);
-		this.textFieldConstraints.fill = GridBagConstraints.HORIZONTAL;
-		this.textFieldConstraints.gridy++;
+		this.add(this.labelImagemMapa, this.fieldConstraints);
+		this.fieldConstraints.fill = GridBagConstraints.HORIZONTAL;
+		this.fieldConstraints.gridy++;
 	}
 
-	private void InicializarBotoes(){
-		this.textFieldConstraints.fill = GridBagConstraints.NONE;
-		this.textFieldConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
+	private void inicializarBotoes(){
+		this.fieldConstraints.fill = GridBagConstraints.NONE;
+		this.fieldConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
 		this.buttonOK = new JButton("OK");
-		this.add(this.buttonOK, this.textFieldConstraints);
-		this.textFieldConstraints.fill = GridBagConstraints.HORIZONTAL;
-		this.textFieldConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
+		this.add(this.buttonOK, this.fieldConstraints);
+		this.fieldConstraints.fill = GridBagConstraints.HORIZONTAL;
+		this.fieldConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
 	}
 }
