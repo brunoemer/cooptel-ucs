@@ -1,4 +1,5 @@
 import persistence.ConnectionSingleton;
+import view.Desktop;
 
 
 public class Init {
@@ -8,7 +9,9 @@ public class Init {
 	 */
 	public static void main(String[] args) {
 		ConnectionSingleton.getInstance();
-		System.out.println("foi");
+		Desktop d = new Desktop();
+		d.initComponents();
+		d.setVisible(true);
 	}
 
 }
