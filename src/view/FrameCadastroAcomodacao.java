@@ -15,6 +15,7 @@ import java.util.Properties;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -26,7 +27,7 @@ import net.sourceforge.jdatepicker.JDatePicker;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 
-public class FrameCadastroAcomodacao extends JFrame{
+public class FrameCadastroAcomodacao extends JInternalFrame{
 	private GridBagConstraints labelConstraints, fieldConstraints;
 	private JLabel labelDescricao, labelEndereco, labelTipo, labelCafeDaManha, 
 				   labelValorDaDiaria, labelDisponibilidade, labelDisponibilidadeAte, 
@@ -42,8 +43,10 @@ public class FrameCadastroAcomodacao extends JFrame{
 	}
 	
 	private void inicializar(){
-		this.setTitle("Cadastro de AcomodaÁ„o");
+		this.setTitle("Cadastro de Acomoda√ß√£o");
 		this.setSize(700, 950);
+		this.setClosable(true);
+		this.setMaximizable(true);
 		
 		this.inicializarConstraints();
 		this.setLayout(new GridBagLayout());
@@ -76,7 +79,7 @@ public class FrameCadastroAcomodacao extends JFrame{
 	}
 	
 	private void inicializarCamposDescricao(){
-		this.labelDescricao = new JLabel("DescriÁ„o");
+		this.labelDescricao = new JLabel("Descri√ß√£o");
 		this.add(this.labelDescricao, this.labelConstraints);
 		this.labelConstraints.gridy++;
 		
@@ -86,7 +89,7 @@ public class FrameCadastroAcomodacao extends JFrame{
 	}
 	
 	private void inicializarCamposEndereco() {
-		this.labelEndereco = new JLabel("EndereÁo");
+		this.labelEndereco = new JLabel("Endere√ßo");
 		this.add(this.labelEndereco, this.labelConstraints);
 		this.labelConstraints.gridy++;
 		
@@ -105,7 +108,7 @@ public class FrameCadastroAcomodacao extends JFrame{
 		
 		this.radioSimples = new JRadioButton("Simples");
 		this.radioDuplo = new JRadioButton("Duplo");
-		this.radioFamilia = new JRadioButton("FamÌlia");
+		this.radioFamilia = new JRadioButton("Fam√≠lia");
 		
 		panel.add(this.radioSimples);
 		panel.add(this.radioDuplo);
@@ -116,7 +119,7 @@ public class FrameCadastroAcomodacao extends JFrame{
 	}
 
 	private void inicializarCamposCafeDaManha(){
-		this.labelCafeDaManha = new JLabel("CafÈ da Manh„");
+		this.labelCafeDaManha = new JLabel("Caf√© da Manh√£");
 		this.add(this.labelCafeDaManha, this.labelConstraints);
 		this.labelConstraints.gridy++;
 		
@@ -134,7 +137,7 @@ public class FrameCadastroAcomodacao extends JFrame{
 	}
 
 	private void inicializarCamposValorDaDiaria(){
-		this.labelValorDaDiaria = new JLabel("Valor da Di·ria");
+		this.labelValorDaDiaria = new JLabel("Valor da Di√°ria");
 		this.add(this.labelValorDaDiaria, this.labelConstraints);
 		this.labelConstraints.gridy++;
 		
@@ -156,7 +159,7 @@ public class FrameCadastroAcomodacao extends JFrame{
 		panel.setLayout(new FlowLayout(FlowLayout.LEADING, 10, 0));
 		
 		this.dateInicioDisponibilidade = new JDatePickerImpl(new JDatePanelImpl(null));
-		this.labelDisponibilidadeAte = new JLabel("atÈ");
+		this.labelDisponibilidadeAte = new JLabel("at√©");
 		this.dateFimDisponibilidade = new JDatePickerImpl(new JDatePanelImpl(null));
 		
 		panel.add(dateInicioDisponibilidade, this.labelConstraints);

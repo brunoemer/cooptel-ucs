@@ -6,19 +6,22 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class FrameCadastroColaborador extends JFrame{
+public class FrameCadastroColaborador extends JInternalFrame implements ActionListener{
 	private GridBagConstraints labelConstraints, fieldConstraints;
 	private JLabel labelCpf, labelNome, labelEmail, labelEndereco, labelUsuario, labelSenha;
 	private JTextField textCpf, textNome, textEmail, textEndereco, textUsuario;
 	private JPasswordField fieldSenha;
-	private JButton buttonOK, buttonAcomodacoes;
+	private JButton buttonOK;
 	
 	public FrameCadastroColaborador(){
 		this.inicializar();
@@ -27,6 +30,8 @@ public class FrameCadastroColaborador extends JFrame{
 	private void inicializar(){
 		this.setTitle("Cadastro de Colaborador");
 		this.setSize(400, 240);
+		this.setClosable(true);
+		this.setMaximizable(true);
 		
 		this.inicializarConstraints();
 		this.setLayout(new GridBagLayout());
@@ -86,7 +91,7 @@ public class FrameCadastroColaborador extends JFrame{
 	}
 	
 	private void InicializarCamposEndereco(){
-		this.labelEndereco = new JLabel("Endereço");
+		this.labelEndereco = new JLabel("EndereÃ§o");
 		this.add(this.labelEndereco, this.labelConstraints);
 		this.labelConstraints.gridy++;
 		
@@ -99,7 +104,7 @@ public class FrameCadastroColaborador extends JFrame{
 		Panel panel = new Panel();
 		panel.setLayout(new FlowLayout(FlowLayout.LEADING, 15, 0));
 		
-		this.labelUsuario = new JLabel("Usuário");
+		this.labelUsuario = new JLabel("UsuÃ¡rio");
 		this.textUsuario = new JTextField();
 		this.textUsuario.setPreferredSize(new Dimension(100, 20));
 		this.labelSenha = new JLabel("Senha");
@@ -124,13 +129,18 @@ public class FrameCadastroColaborador extends JFrame{
 		
 		Panel panel = new Panel();
 		panel.setLayout(new FlowLayout(FlowLayout.TRAILING));
-		this.buttonAcomodacoes = new JButton("Acomodações");
 		this.buttonOK = new JButton("OK");
-		panel.add(this.buttonAcomodacoes);
 		panel.add(this.buttonOK);
 		
 		this.add(panel, this.fieldConstraints);
 		this.fieldConstraints.fill = GridBagConstraints.HORIZONTAL;
 		this.fieldConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == this.buttonOK){
+			
+		}
 	}
 }
