@@ -37,7 +37,7 @@ public class ColaboradorPersistence {
 		return lista;
 	}
 
-	public void alterar(Colaborador c) {
+	public int alterar(Colaborador c) {
 		PreparedStatement pstmt;
 		try {
 			pstmt = this.conn.prepareStatement("UPDATE colaborador SET cpf = ?, nome = ?, endereco = ?, email = ?, ativo = ? WHERE id = ?");
@@ -47,13 +47,14 @@ public class ColaboradorPersistence {
 			pstmt.setString(4, c.getEmail());
 			pstmt.setInt(5, c.getAtivo()?1:0);
 			pstmt.setInt(6, c.getId());
-			pstmt.executeUpdate();
+			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Problemas ao alterar colaborador");
+			return 0;
 		}
 	}
 
-	public void inserir(Colaborador c) {
+	public int inserir(Colaborador c) {
 		PreparedStatement pstmt;
 		try {
 			pstmt = this.conn.prepareStatement("INSERT INTO colaborador (cpf, nome, endereco, email, ativo) VALUES (?, ?, ?, ?, ?)");
@@ -62,9 +63,10 @@ public class ColaboradorPersistence {
 			pstmt.setString(3, c.getEndereco());
 			pstmt.setString(4, c.getEmail());
 			pstmt.setInt(5, c.getAtivo()?1:0);
-			pstmt.executeUpdate();
+			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Problemas ao inserir colaborador");
+			return 0;
 		}
 	}
 

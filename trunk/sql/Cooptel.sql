@@ -30,3 +30,5 @@ ALTER TABLE acomodacao ADD CONSTRAINT PK_acomodacao PRIMARY KEY (id,id_colaborad
 ALTER TABLE acomodacao ADD CONSTRAINT FK_acomodacao_0 FOREIGN KEY (id_colaborador) REFERENCES colaborador (id);
 
 
+ALTER TABLE `colaborador` CHANGE `id` `id` INT( 11 ) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `acomodacao` CHANGE `id` `id` INT( 11 ) NOT NULL AUTO_INCREMENT;

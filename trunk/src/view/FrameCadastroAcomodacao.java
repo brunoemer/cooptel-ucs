@@ -9,6 +9,7 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Panel;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Properties;
 
@@ -17,17 +18,21 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
-import net.sourceforge.jdatepicker.DateModel;
-import net.sourceforge.jdatepicker.JDatePicker;
-import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
-import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import controller.AcomodacaoController;
 
-public class FrameCadastroAcomodacao extends JInternalFrame{
+import model.Acomodacao;
+//import net.sourceforge.jdatepicker.DateModel;
+//import net.sourceforge.jdatepicker.JDatePicker;
+//import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+//import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+
+public class FrameCadastroAcomodacao extends JInternalFrame implements ActionListener{
 	private GridBagConstraints labelConstraints, fieldConstraints;
 	private JLabel labelDescricao, labelEndereco, labelTipo, labelCafeDaManha, 
 				   labelValorDaDiaria, labelDisponibilidade, labelDisponibilidadeAte, 
@@ -35,8 +40,10 @@ public class FrameCadastroAcomodacao extends JInternalFrame{
 				   labelMapa, labelImagemMapa;
 	private JTextField textDescricao, textEndereco, textValorDaDiaria;
 	private JRadioButton radioSimples, radioDuplo, radioFamilia, radioSim, radioNao;
-	private JDatePickerImpl dateInicioDisponibilidade, dateFimDisponibilidade;
+//	private JDatePickerImpl dateInicioDisponibilidade, dateFimDisponibilidade;
 	private JButton buttonOK;
+	
+	private AcomodacaoController acomodacaoController;
 	
 	public FrameCadastroAcomodacao(){
 		this.inicializar();
@@ -47,6 +54,8 @@ public class FrameCadastroAcomodacao extends JInternalFrame{
 		this.setSize(700, 950);
 		this.setClosable(true);
 		this.setMaximizable(true);
+		
+		this.acomodacaoController = new AcomodacaoController();
 		
 		this.inicializarConstraints();
 		this.setLayout(new GridBagLayout());
@@ -158,13 +167,13 @@ public class FrameCadastroAcomodacao extends JInternalFrame{
 		Panel panel = new Panel();
 		panel.setLayout(new FlowLayout(FlowLayout.LEADING, 10, 0));
 		
-		this.dateInicioDisponibilidade = new JDatePickerImpl(new JDatePanelImpl(null));
-		this.labelDisponibilidadeAte = new JLabel("até");
-		this.dateFimDisponibilidade = new JDatePickerImpl(new JDatePanelImpl(null));
-		
-		panel.add(dateInicioDisponibilidade, this.labelConstraints);
-		panel.add(this.labelDisponibilidadeAte);
-		panel.add(dateFimDisponibilidade, this.labelConstraints);
+//		this.dateInicioDisponibilidade = new JDatePickerImpl(new JDatePanelImpl(null));
+//		this.labelDisponibilidadeAte = new JLabel("até");
+//		this.dateFimDisponibilidade = new JDatePickerImpl(new JDatePanelImpl(null));
+//		
+//		panel.add(dateInicioDisponibilidade, this.labelConstraints);
+//		panel.add(this.labelDisponibilidadeAte);
+//		panel.add(dateFimDisponibilidade, this.labelConstraints);
 		
 		this.add(panel, this.fieldConstraints);
 		this.fieldConstraints.gridy++;
@@ -225,8 +234,54 @@ public class FrameCadastroAcomodacao extends JInternalFrame{
 		this.fieldConstraints.fill = GridBagConstraints.NONE;
 		this.fieldConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
 		this.buttonOK = new JButton("OK");
+		this.buttonOK.addActionListener(this);
 		this.add(this.buttonOK, this.fieldConstraints);
 		this.fieldConstraints.fill = GridBagConstraints.HORIZONTAL;
 		this.fieldConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
 	}
+	
+	public void cadastrar() {
+		Acomodacao a = new Acomodacao();
+		a.setIdColaborador(1); // VER COMO FAZER
+		int tipo = 0;
+		if(this.radioSimples.isSelected()){
+			tipo = 0;
+		}else if(this.radioDuplo.isSelected()){
+			tipo = 1;
+		}else if(this.radioFamilia.isSelected()){
+			tipo = 2;
+		}
+		a.setTipo(tipo);
+		a.setCafe(this.radioSim.isSelected());
+		a.setEndereco(textEndereco.getText());
+		a.setLatitude(0); // VER
+		a.setLongitude(0); // VER
+		a.setFoto1(""); // VER
+		a.setFoto2(""); // VER
+		a.setValorDiario(Float.parseFloat(textValorDaDiaria.getText()));
+		a.setDescricao(textDescricao.getText());
+		int sucess = this.acomodacaoController.cadastrar(a);
+		if(sucess == 0){
+			JOptionPane.showMessageDialog(this, "Erro ao cadastrar", "Ocorreu um erro", JOptionPane.ERROR_MESSAGE);
+		}else{
+			JOptionPane.showMessageDialog(this, "Cadastrado com sucesso", "", JOptionPane.PLAIN_MESSAGE);
+			this.setVisible(false);
+		}
+	}
+
+	public void pesquisar() {
+
+	}
+
+	public void detalhar(Acomodacao a) {
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == this.buttonOK){
+			this.cadastrar();
+		}
+	}
+
 }

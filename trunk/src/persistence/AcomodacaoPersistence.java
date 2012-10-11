@@ -18,11 +18,11 @@ public class AcomodacaoPersistence {
 		this.conn = ConnectionSingleton.getInstance().getConnnection();
 	}
 	
-	public void inserir(Acomodacao a) {
+	public int inserir(Acomodacao a) {
 		PreparedStatement pstmt;
 		try {
 			pstmt = this.conn.prepareStatement("INSERT INTO acomodacao " +
-				"(id_colaborador, tipo, cafe, endereco, latitude, logitude, foto1, foto2, valordiario, descricao) VALUES " +
+				"(id_colaborador, tipo, cafe, endereco, latitude, longitude, foto1, foto2, valordiario, descricao) VALUES " +
 				"(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			pstmt.setInt(1, a.getIdColaborador());
 			pstmt.setInt(2, a.getTipo());
@@ -34,9 +34,10 @@ public class AcomodacaoPersistence {
 			pstmt.setString(8, a.getFoto2());
 			pstmt.setFloat(9, a.getValorDiario());
 			pstmt.setString(10, a.getDescricao());
-			pstmt.executeUpdate();
+			return pstmt.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("Problemas ao inserir colaborador");
+			System.out.println("Problemas ao inserir acomodacao"+e.getMessage());
+			return 0;
 		}
 	}
 

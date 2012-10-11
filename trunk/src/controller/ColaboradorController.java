@@ -9,6 +9,10 @@ public class ColaboradorController {
 
 	private ColaboradorPersistence colaboradorPersistence;
 
+	public ColaboradorController() {
+		this.colaboradorPersistence = new ColaboradorPersistence();
+	}
+
 	public List consultar() {
 		return null;
 	}
@@ -17,8 +21,8 @@ public class ColaboradorController {
 
 	}
 
-	public void cadastrar(Colaborador c) {
-
+	public int cadastrar(Colaborador c) {
+		return colaboradorPersistence.inserir(c);
 	}
 
 }
