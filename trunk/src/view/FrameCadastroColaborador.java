@@ -35,10 +35,10 @@ public class FrameCadastroColaborador extends JInternalFrame implements ActionLi
 		
 		this.inicializarConstraints();
 		this.setLayout(new GridBagLayout());
-		this.InicializarCamposCpf();
-		this.InicializarCamposNome();
-		this.InicializarCamposEmail();
-		this.InicializarCamposEndereco();
+		this.inicializarCamposCpf();
+		this.inicializarCamposNome();
+		this.inicializarCamposEmail();
+		this.inicializarCamposEndereco();
 		this.inicializarCamposUsuarioSenha();
 		this.inicializarBotoes();
 	}
@@ -60,7 +60,7 @@ public class FrameCadastroColaborador extends JInternalFrame implements ActionLi
 		this.fieldConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
 	}
 	
-	private void InicializarCamposCpf(){
+	private void inicializarCamposCpf(){
 		this.labelCpf = new JLabel("CPF");
 		this.add(this.labelCpf, this.labelConstraints);
 		this.labelConstraints.gridy++;
@@ -70,7 +70,7 @@ public class FrameCadastroColaborador extends JInternalFrame implements ActionLi
 		this.fieldConstraints.gridy++;
 	}
 	
-	private void InicializarCamposNome(){
+	private void inicializarCamposNome(){
 		this.labelNome = new JLabel("Nome");
 		this.add(this.labelNome, this.labelConstraints);
 		this.labelConstraints.gridy++;
@@ -80,7 +80,7 @@ public class FrameCadastroColaborador extends JInternalFrame implements ActionLi
 		this.fieldConstraints.gridy++;
 	}
 	
-	private void InicializarCamposEmail(){
+	private void inicializarCamposEmail(){
 		this.labelEmail = new JLabel("E-mail");
 		this.add(this.labelEmail, this.labelConstraints);
 		this.labelConstraints.gridy++;
@@ -90,7 +90,7 @@ public class FrameCadastroColaborador extends JInternalFrame implements ActionLi
 		this.fieldConstraints.gridy++;
 	}
 	
-	private void InicializarCamposEndereco(){
+	private void inicializarCamposEndereco(){
 		this.labelEndereco = new JLabel("Endereço");
 		this.add(this.labelEndereco, this.labelConstraints);
 		this.labelConstraints.gridy++;
