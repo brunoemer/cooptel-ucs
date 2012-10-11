@@ -17,10 +17,12 @@ public class Desktop extends JFrame implements ActionListener {
 
 	private JMenuBar menuBar;
 	private JMenu mArquivo;
-	private JMenu mCadastros;
 	private JMenuItem miSair;
-	private JMenuItem miCadColaborador;
-	private JMenuItem miCadAcomodacao;
+	private JMenu mColaborador;
+	private JMenuItem miColaboradorCad;
+	private JMenuItem miColaboradorLista;
+	private JMenu mAcomodacao;
+	private JMenuItem miAcomodacaoCad;
 
 	private FrameCadastroColaborador cc;
 	private FrameCadastroAcomodacao ca;
@@ -34,30 +36,32 @@ public class Desktop extends JFrame implements ActionListener {
 		this.desktopPane = new JDesktopPane();
 		this.desktopPane.setSize(600, 400);
 		
-		mArquivo = new JMenu("Arquivo");
-		miSair = new JMenuItem("Sair");
-		miSair.addActionListener(this);
-		mArquivo.add(miSair);
+		this.mArquivo = new JMenu("Arquivo");
+		this.miSair = new JMenuItem("Sair");
+		this.miSair.addActionListener(this);
+		this.mArquivo.add(this.miSair);
 		
-		mCadastros = new JMenu("Cadastros");
-		miCadColaborador = new JMenuItem("Colaborador");
-		miCadColaborador.addActionListener(this);
-		mCadastros.add(miCadColaborador);
-		miCadAcomodacao = new JMenuItem("Acomodação");
-		miCadAcomodacao.addActionListener(this);
-		mCadastros.add(miCadAcomodacao);
-
-		menuBar = new JMenuBar();
-		menuBar.add(mArquivo);
-		menuBar.add(mCadastros);
-		this.setJMenuBar(menuBar);
+		this.mColaborador = new JMenu("Colaborador");
+		this.miColaboradorCad = new JMenuItem("Cadastro");
+		this.miColaboradorCad.addActionListener(this);
+		this.mColaborador.add(this.miColaboradorCad);
+		this.miColaboradorLista = new JMenuItem("Lista");
+		this.miColaboradorLista.addActionListener(this);
+		this.mColaborador.add(this.miColaboradorLista);
+		
+		this.mAcomodacao = new JMenu("Acomodação");
+		this.miAcomodacaoCad = new JMenuItem("Cadastro");
+		this.miAcomodacaoCad.addActionListener(this);
+		this.mAcomodacao.add(this.miAcomodacaoCad);
+		
+		this.menuBar = new JMenuBar();
+		this.menuBar.add(this.mArquivo);
+		this.menuBar.add(this.mColaborador);
+		this.menuBar.add(this.mAcomodacao);
+		this.setJMenuBar(this.menuBar);
 		
 		this.getContentPane().add(this.desktopPane);
 		this.setSize(1024, 900);
-
-		cc = new FrameCadastroColaborador();
-		ca = new FrameCadastroAcomodacao();
-		
 	}
 	
 	/**
@@ -67,14 +71,18 @@ public class Desktop extends JFrame implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == miSair) { 
+		if(e.getSource() == this.miSair) { 
 			this.acaoSair();
-		} else if(e.getSource() == miCadColaborador) {
-			cc.setVisible(true);
-			desktopPane.add(cc);
-		} else if(e.getSource() == miCadAcomodacao) {
-			ca.setVisible(true);
-			desktopPane.add(ca);
+		} else if(e.getSource() == this.miColaboradorCad) {
+			this.cc = new FrameCadastroColaborador();
+			this.cc.setVisible(true);
+			desktopPane.add(this.cc);
+		} else if(e.getSource() == this.miAcomodacaoCad) {
+			this.ca = new FrameCadastroAcomodacao();
+			this.ca.setVisible(true);
+			desktopPane.add(this.ca);
+		} else if(e.getSource() == this.miColaboradorLista) {
+			
 		}
 	}
 	

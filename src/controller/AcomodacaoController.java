@@ -9,11 +9,15 @@ import persistence.ColaboradorPersistence;
 public class AcomodacaoController {
 
 	private AcomodacaoPersistence acomodacaoPersistence;
-
 	private ColaboradorPersistence colaboradorPersistence;
 
-	public void cadastrar(Acomodacao a) {
-
+	public AcomodacaoController() {
+		this.acomodacaoPersistence = new AcomodacaoPersistence();
+		this.colaboradorPersistence = new ColaboradorPersistence();
+	}
+	
+	public int cadastrar(Acomodacao a) {
+		return acomodacaoPersistence.inserir(a);
 	}
 
 	public List consultar() {

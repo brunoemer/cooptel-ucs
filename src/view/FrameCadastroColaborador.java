@@ -13,8 +13,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import model.Colaborador;
+
+import controller.ColaboradorController;
 
 public class FrameCadastroColaborador extends JInternalFrame implements ActionListener{
 	private GridBagConstraints labelConstraints, fieldConstraints;
@@ -23,6 +28,8 @@ public class FrameCadastroColaborador extends JInternalFrame implements ActionLi
 	private JPasswordField fieldSenha;
 	private JButton buttonOK;
 	
+	private ColaboradorController colaboradorController;
+
 	public FrameCadastroColaborador(){
 		this.inicializar();
 	}
@@ -33,12 +40,14 @@ public class FrameCadastroColaborador extends JInternalFrame implements ActionLi
 		this.setClosable(true);
 		this.setMaximizable(true);
 		
+		this.colaboradorController = new ColaboradorController();
+		
 		this.inicializarConstraints();
 		this.setLayout(new GridBagLayout());
 		this.inicializarCamposCpf();
 		this.inicializarCamposNome();
-		this.inicializarCamposEmail();
-		this.inicializarCamposEndereco();
+		this.InicializarCamposEmail();
+		this.InicializarCamposEndereco();
 		this.inicializarCamposUsuarioSenha();
 		this.inicializarBotoes();
 	}
@@ -80,7 +89,7 @@ public class FrameCadastroColaborador extends JInternalFrame implements ActionLi
 		this.fieldConstraints.gridy++;
 	}
 	
-	private void inicializarCamposEmail(){
+	private void InicializarCamposEmail(){
 		this.labelEmail = new JLabel("E-mail");
 		this.add(this.labelEmail, this.labelConstraints);
 		this.labelConstraints.gridy++;
@@ -90,7 +99,7 @@ public class FrameCadastroColaborador extends JInternalFrame implements ActionLi
 		this.fieldConstraints.gridy++;
 	}
 	
-	private void inicializarCamposEndereco(){
+	private void InicializarCamposEndereco(){
 		this.labelEndereco = new JLabel("Endereço");
 		this.add(this.labelEndereco, this.labelConstraints);
 		this.labelConstraints.gridy++;
@@ -130,17 +139,33 @@ public class FrameCadastroColaborador extends JInternalFrame implements ActionLi
 		Panel panel = new Panel();
 		panel.setLayout(new FlowLayout(FlowLayout.TRAILING));
 		this.buttonOK = new JButton("OK");
+		this.buttonOK.addActionListener(this);
 		panel.add(this.buttonOK);
 		
 		this.add(panel, this.fieldConstraints);
 		this.fieldConstraints.fill = GridBagConstraints.HORIZONTAL;
 		this.fieldConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
 	}
-
+	
+	public void cadastrar() {
+		Colaborador c = new Colaborador();
+		c.setCpf(textCpf.getText());
+		c.setNome(textNome.getText());
+		c.setEndereco(textEndereco.getText());
+		c.setEmail(textEmail.getText());
+		int sucess = this.colaboradorController.cadastrar(c);
+		if(sucess == 0){
+			JOptionPane.showMessageDialog(this, "Erro ao cadastrar", "Ocorreu um erro", JOptionPane.ERROR_MESSAGE);
+		}else{
+			JOptionPane.showMessageDialog(this, "Cadastrado com sucesso", "", JOptionPane.PLAIN_MESSAGE);
+			this.setVisible(false);
+		}
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == this.buttonOK){
-			
+			this.cadastrar();
 		}
 	}
 }
