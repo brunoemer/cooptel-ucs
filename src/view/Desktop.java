@@ -31,7 +31,7 @@ public class Desktop extends JFrame implements ActionListener {
 	 * Metodo que inicia os componentes
 	 */
 	public void initComponents(){
-		this.setTitle("Calculadora campeonatos");
+		this.setTitle("Cooptel");
 		
 		this.desktopPane = new JDesktopPane();
 		this.desktopPane.setSize(600, 400);
