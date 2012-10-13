@@ -23,7 +23,7 @@ public class ConnectionSingleton {
 		} catch (ClassNotFoundException cnfe) {
 			throw new Exception("Problema com o driver JDBC"+cnfe.getMessage());
 		} catch (SQLException se) {
-			throw new Exception("Problemas ao conectar");
+			throw new Exception("Problemas ao conectar: " + se.getMessage());
 		}
 	}
 	
