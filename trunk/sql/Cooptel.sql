@@ -32,3 +32,13 @@ ALTER TABLE acomodacao ADD CONSTRAINT FK_acomodacao_0 FOREIGN KEY (id_colaborado
 
 ALTER TABLE `colaborador` CHANGE `id` `id` INT( 11 ) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `acomodacao` CHANGE `id` `id` INT( 11 ) NOT NULL AUTO_INCREMENT;
+
+CREATE TABLE disponibilidade (
+  id INT NOT NULL AUTO_INCREMENT,
+  id_acomodacao INT NOT NULL,
+  datainicio DATETIME NOT NULL,
+  datafim DATETIME NOT NULL,
+  CONSTRAINT PK_disponibilidade PRIMARY KEY (id,id_acomodacao)
+);
+
+ALTER TABLE disponibilidade ADD CONSTRAINT FK_disponibilidade_0 FOREIGN KEY (id_acomodacao) REFERENCES acomodacao (id);

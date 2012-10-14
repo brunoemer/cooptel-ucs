@@ -65,7 +65,7 @@ public class ColaboradorPersistence {
 			pstmt.setInt(5, c.getAtivo()?1:0);
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("Problemas ao inserir colaborador");
+			System.out.println("Problemas ao inserir colaborador: " + e.getMessage());
 			return 0;
 		}
 	}
