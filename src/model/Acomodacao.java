@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Acomodacao {
 	private int id;
 	private int id_colaborador;
@@ -12,6 +15,7 @@ public class Acomodacao {
 	private String foto2;
 	private float valordiario;
 	private String descricao;
+	private List<Disponibilidade> disponibilidades;
 	
 	public Acomodacao() {
 		this.id_colaborador = 0;
@@ -24,11 +28,12 @@ public class Acomodacao {
 		this.foto2 = "";
 		this.valordiario = 0;
 		this.descricao = "";
+		this.disponibilidades = new ArrayList<Disponibilidade>();
 	}
 	
 	public Acomodacao(int id_colaborador, int tipo, boolean cafe,
 			String endereco, double latitude, double longitude, String foto1,
-			String foto2, float valordiario, String descricao, int id) {
+			String foto2, float valordiario, String descricao, int id, List<Disponibilidade> disponibilidades) {
 		super();
 		this.id_colaborador = id_colaborador;
 		this.tipo = tipo;
@@ -41,6 +46,7 @@ public class Acomodacao {
 		this.valordiario = valordiario;
 		this.descricao = descricao;
 		this.id = id;
+		this.disponibilidades = disponibilidades;
 	}
 
 	public int getId() {
@@ -129,5 +135,13 @@ public class Acomodacao {
 	
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	
+	public List<Disponibilidade> getDisponibilidades(){
+		return this.disponibilidades;
+	}
+	
+	public void setDisponibilidades(List<Disponibilidade> disponibilidades){
+		this.disponibilidades = disponibilidades;
 	}
 }

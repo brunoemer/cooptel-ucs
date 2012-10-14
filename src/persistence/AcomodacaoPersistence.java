@@ -2,10 +2,12 @@ package persistence;
 
 import model.Acomodacao;
 import model.Colaborador;
+import model.Disponibilidade;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +25,7 @@ public class AcomodacaoPersistence {
 		try {
 			pstmt = this.conn.prepareStatement("INSERT INTO acomodacao " +
 				"(id_colaborador, tipo, cafe, endereco, latitude, longitude, foto1, foto2, valordiario, descricao) VALUES " +
-				"(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+				"(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 			pstmt.setInt(1, a.getIdColaborador());
 			pstmt.setInt(2, a.getTipo());
 			pstmt.setInt(3, a.isCafe()?1:0);
@@ -34,7 +36,14 @@ public class AcomodacaoPersistence {
 			pstmt.setString(8, a.getFoto2());
 			pstmt.setFloat(9, a.getValorDiario());
 			pstmt.setString(10, a.getDescricao());
-			return pstmt.executeUpdate();
+			int retorno = pstmt.executeUpdate();
+			
+			ResultSet rs = pstmt.getGeneratedKeys();
+		    rs.next();
+		    a.setId(rs.getInt(1));
+		   
+		   return retorno;
+
 		} catch (SQLException e) {
 			System.out.println("Problemas ao inserir acomodacao"+e.getMessage());
 			return 0;
@@ -50,7 +59,7 @@ public class AcomodacaoPersistence {
 			boolean achou = false;
 			while(res.next()){
 				achou = true;
-				lista.add(new Acomodacao(res.getInt("id_colaborador"), res.getInt("tipo"), (res.getInt("cafe") == 1), res.getString("endereco"), res.getDouble("latitude"), res.getDouble("longitude"), res.getString("foto1"), res.getString("foto2"), res.getFloat("valordiario"), res.getString("descricao"), res.getInt("id")));
+				lista.add(new Acomodacao(res.getInt("id_colaborador"), res.getInt("tipo"), (res.getInt("cafe") == 1), res.getString("endereco"), res.getDouble("latitude"), res.getDouble("longitude"), res.getString("foto1"), res.getString("foto2"), res.getFloat("valordiario"), res.getString("descricao"), res.getInt("id"), new ArrayList<Disponibilidade>()));
 			}
 			if(!achou){
 				System.out.println("Nenhuma acomodacao encontrado");
@@ -72,7 +81,7 @@ public class AcomodacaoPersistence {
 			if(achou == false){
 				System.out.println("Nenhuma acomodacao encontrado");
 			}
-			acomodacao = new Acomodacao(res.getInt("id_colaborador"), res.getInt("tipo"), (res.getInt("cafe") == 1), res.getString("endereco"), res.getDouble("latitude"), res.getDouble("longitude"), res.getString("foto1"), res.getString("foto2"), res.getFloat("valordiario"), res.getString("descricao"), res.getInt("id"));
+			acomodacao = new Acomodacao(res.getInt("id_colaborador"), res.getInt("tipo"), (res.getInt("cafe") == 1), res.getString("endereco"), res.getDouble("latitude"), res.getDouble("longitude"), res.getString("foto1"), res.getString("foto2"), res.getFloat("valordiario"), res.getString("descricao"), res.getInt("id"), new ArrayList<Disponibilidade>());
 		} catch (SQLException e) {
 			
 		}

@@ -1,36 +1,35 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Properties;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
-import controller.AcomodacaoController;
-
 import model.Acomodacao;
-//import net.sourceforge.jdatepicker.DateModel;
-//import net.sourceforge.jdatepicker.JDatePicker;
-//import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
-//import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import model.Colaborador;
+import model.Disponibilidade;
+import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import controller.AcomodacaoController;
 
 public class FrameCadastroAcomodacao extends JInternalFrame implements ActionListener{
 	private GridBagConstraints labelConstraints, fieldConstraints;
@@ -40,7 +39,7 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 				   labelMapa, labelImagemMapa;
 	private JTextField textDescricao, textEndereco, textValorDaDiaria;
 	private JRadioButton radioSimples, radioDuplo, radioFamilia, radioSim, radioNao;
-//	private JDatePickerImpl dateInicioDisponibilidade, dateFimDisponibilidade;
+	private JDatePickerImpl dateInicioDisponibilidade, dateFimDisponibilidade;
 	private JButton buttonOK;
 	
 	private AcomodacaoController acomodacaoController;
@@ -123,6 +122,11 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 		panel.add(this.radioDuplo);
 		panel.add(this.radioFamilia);
 		
+		ButtonGroup group = new ButtonGroup();
+		group.add(this.radioSimples);
+		group.add(this.radioDuplo);
+		group.add(this.radioFamilia);
+		
 		this.add(panel, this.fieldConstraints);
 		this.fieldConstraints.gridy++;
 	}
@@ -140,6 +144,10 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 		
 		panel.add(this.radioSim);
 		panel.add(this.radioNao);
+		
+		ButtonGroup group = new ButtonGroup();
+		group.add(this.radioSim);
+		group.add(this.radioNao);
 		
 		this.add(panel, this.fieldConstraints);
 		this.fieldConstraints.gridy++;
@@ -167,13 +175,13 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 		Panel panel = new Panel();
 		panel.setLayout(new FlowLayout(FlowLayout.LEADING, 10, 0));
 		
-//		this.dateInicioDisponibilidade = new JDatePickerImpl(new JDatePanelImpl(null));
-//		this.labelDisponibilidadeAte = new JLabel("até");
-//		this.dateFimDisponibilidade = new JDatePickerImpl(new JDatePanelImpl(null));
-//		
-//		panel.add(dateInicioDisponibilidade, this.labelConstraints);
-//		panel.add(this.labelDisponibilidadeAte);
-//		panel.add(dateFimDisponibilidade, this.labelConstraints);
+		this.dateInicioDisponibilidade = new JDatePickerImpl(new JDatePanelImpl(null));
+		this.labelDisponibilidadeAte = new JLabel("até");
+		this.dateFimDisponibilidade = new JDatePickerImpl(new JDatePanelImpl(null));
+		
+		panel.add(dateInicioDisponibilidade, this.labelConstraints);
+		panel.add(this.labelDisponibilidadeAte);
+		panel.add(dateFimDisponibilidade, this.labelConstraints);
 		
 		this.add(panel, this.fieldConstraints);
 		this.fieldConstraints.gridy++;
@@ -229,7 +237,7 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 		this.fieldConstraints.fill = GridBagConstraints.HORIZONTAL;
 		this.fieldConstraints.gridy++;
 	}
-
+	
 	private void inicializarBotoes(){
 		this.fieldConstraints.fill = GridBagConstraints.NONE;
 		this.fieldConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
@@ -260,6 +268,13 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 		a.setFoto2(""); // VER
 		a.setValorDiario(Float.parseFloat(textValorDaDiaria.getText()));
 		a.setDescricao(textDescricao.getText());
+		GregorianCalendar data = (GregorianCalendar)this.dateInicioDisponibilidade.getJFormattedTextField().getValue();
+		Date dataInicio = new Date(data.get(GregorianCalendar.YEAR) - 1900, data.get(GregorianCalendar.MONTH), data.get(GregorianCalendar.DATE));
+		data = (GregorianCalendar)this.dateFimDisponibilidade.getJFormattedTextField().getValue();
+		Date dataFim = new Date(data.get(GregorianCalendar.YEAR) - 1900, data.get(GregorianCalendar.MONTH), data.get(GregorianCalendar.DATE));
+		List<Disponibilidade> disponibilidades = new ArrayList<Disponibilidade>();
+		disponibilidades.add(new Disponibilidade(dataInicio, dataFim, 0));
+		a.setDisponibilidades(disponibilidades);
 		int sucess = this.acomodacaoController.cadastrar(a);
 		if(sucess == 0){
 			JOptionPane.showMessageDialog(this, "Erro ao cadastrar", "Ocorreu um erro", JOptionPane.ERROR_MESSAGE);
