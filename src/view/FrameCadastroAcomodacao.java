@@ -33,10 +33,12 @@ import javax.swing.border.LineBorder;
 import model.Acomodacao;
 import model.Colaborador;
 import model.Disponibilidade;
+import model.Usuario;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import controller.AcomodacaoController;
 import controller.ColaboradorController;
+import controller.UsuarioController;
 
 public class FrameCadastroAcomodacao extends JInternalFrame implements ActionListener, MouseListener{
 	private GridBagConstraints labelConstraints, fieldConstraints;
@@ -111,8 +113,15 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 	    Iterator<Colaborador> it = this.listaColaboradores.iterator();  
 	    while(it.hasNext()){
 	    	Colaborador c = it.next();
-	        String colaboradorNome = c.getNome();
-	        this.comboColaboradores.addItem(colaboradorNome);
+	    	if(UsuarioController.getUsuarioLogado().getTipo() == Usuario.TIPO_ADMINISTRADOR){
+	    		String colaboradorNome = c.getNome();
+		        this.comboColaboradores.addItem(colaboradorNome);
+	    	}else if(UsuarioController.getUsuarioLogado().getTipo() == Usuario.TIPO_COLABORADOR){
+		        if(c.getIdUsuario() == UsuarioController.getUsuarioLogado().getId()){
+		        	String colaboradorNome = c.getNome();
+			        this.comboColaboradores.addItem(colaboradorNome);
+		        }
+	    	}
 	    }
 		this.add(this.comboColaboradores, this.fieldConstraints);
 		this.fieldConstraints.gridy++;
@@ -238,6 +247,7 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 		this.labelFotoVistaExterna = new JLabel();
 		this.labelFotoVistaExterna.setBorder(new LineBorder(Color.BLACK));
 		this.labelFotoVistaExterna.addMouseListener(this);
+		labelFotoVistaExterna.setBounds(0, 0, 50, 30);
 		this.labelFotoVistaInterna1 = new JLabel();
 		this.labelFotoVistaInterna1.setBorder(new LineBorder(Color.BLACK));
 		this.labelFotoVistaInterna1.addMouseListener(this);
@@ -282,13 +292,13 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 		this.labelLatitude = new JLabel("Latitude");
 		this.add(this.labelLatitude, this.labelConstraints);
 		this.labelConstraints.gridy++;
-		this.textLatitude = new JTextField();
+		this.textLatitude = new JTextField("0.00000000000000");
 		this.add(this.textLatitude, this.fieldConstraints);
 		this.fieldConstraints.gridy++;
 
 		this.labelLongitude = new JLabel("Longitude");
 		this.add(this.labelLongitude, this.labelConstraints);
-		this.textLongitude = new JTextField();
+		this.textLongitude = new JTextField("0.00000000000000");
 		this.add(this.textLongitude, this.fieldConstraints);
 		this.fieldConstraints.gridy++;
 		

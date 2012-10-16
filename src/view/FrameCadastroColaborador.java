@@ -17,9 +17,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.TextLoader;
+
 import model.Colaborador;
+import model.Usuario;
 
 import controller.ColaboradorController;
+import controller.UsuarioController;
 
 public class FrameCadastroColaborador extends JInternalFrame implements ActionListener{
 	private GridBagConstraints labelConstraints, fieldConstraints;
@@ -29,6 +33,7 @@ public class FrameCadastroColaborador extends JInternalFrame implements ActionLi
 	private JButton buttonOK;
 	
 	private ColaboradorController colaboradorController;
+	private UsuarioController usuarioController;
 
 	public FrameCadastroColaborador(){
 		this.inicializar();
@@ -41,6 +46,7 @@ public class FrameCadastroColaborador extends JInternalFrame implements ActionLi
 		this.setMaximizable(true);
 		
 		this.colaboradorController = new ColaboradorController();
+		this.usuarioController = new UsuarioController();
 		
 		this.inicializarConstraints();
 		this.setLayout(new GridBagLayout());
@@ -148,13 +154,21 @@ public class FrameCadastroColaborador extends JInternalFrame implements ActionLi
 	}
 	
 	public void cadastrar() {
+		Usuario u = new Usuario();
+		u.setLogin(textUsuario.getText());
+		u.setSenha(fieldSenha.getText());
+		u.setTipo(Usuario.TIPO_COLABORADOR);
+		int resUsuario = this.usuarioController.cadastrar(u);
+		
 		Colaborador c = new Colaborador();
+		c.setIdUsuario(u.getId());
 		c.setCpf(textCpf.getText());
 		c.setNome(textNome.getText());
 		c.setEndereco(textEndereco.getText());
 		c.setEmail(textEmail.getText());
-		int sucess = this.colaboradorController.cadastrar(c);
-		if(sucess == 0){
+		int resColaborador = this.colaboradorController.cadastrar(c);
+		
+		if(resColaborador == 0 || resUsuario == 0){
 			JOptionPane.showMessageDialog(this, "Erro ao cadastrar", "Ocorreu um erro", JOptionPane.ERROR_MESSAGE);
 		}else{
 			JOptionPane.showMessageDialog(this, "Cadastrado com sucesso", "", JOptionPane.PLAIN_MESSAGE);
