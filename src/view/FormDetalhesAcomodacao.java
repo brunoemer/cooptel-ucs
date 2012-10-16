@@ -13,10 +13,12 @@ package view;
 import controller.ColaboradorController;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.net.URI;
 
 import javax.swing.JInternalFrame;
 
+import javax.swing.JOptionPane;
 import model.Acomodacao;
 import model.Colaborador;
 
@@ -37,7 +39,7 @@ public class FormDetalhesAcomodacao extends JInternalFrame {
     }
     
     private void populateText(){
-    	this.setTitle("Liberação de Acesso");
+    	this.setTitle("Detalhes de Acomodação");
 		this.setSize(700, 750);
 		this.setClosable(true);
 		this.setMaximizable(true);
@@ -63,6 +65,10 @@ public class FormDetalhesAcomodacao extends JInternalFrame {
         this.txtDetalhes.append("Descrição: "+this.acomodacao.getDescricao()+NEW_LINE);
         
         this.GoogleMaps.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        this.linkFoto1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        this.linkFoto2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        this.linkFoto3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        
         this.GoogleMaps.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -72,6 +78,62 @@ public class FormDetalhesAcomodacao extends JInternalFrame {
                     URI uri = new URI("http://maps.google.com.br/maps?hl=pt-BR&ll=-28.772474,-52.371826");
                     desktop.browse(uri);
                 }catch(Exception exc){}
+            }
+        });
+        
+        this.linkFoto1.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                try {
+                    File f = new File(acomodacao.getFoto1());
+                    java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+                    desktop.open(f);
+                }catch(Exception exc){
+                    JOptionPane.showMessageDialog(null, "Não há foto 1");
+                }
+            }
+        });
+        
+        this.linkFoto1.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                try {
+                    File f = new File(acomodacao.getFoto1());
+                    java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+                    desktop.open(f);
+                }catch(Exception exc){
+                    JOptionPane.showMessageDialog(null, "Não há foto 1");
+                }
+            }
+        });
+        
+        this.linkFoto2.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                try {
+                    File f = new File(acomodacao.getFoto2());
+                    java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+                    desktop.open(f);
+                }catch(Exception exc){
+                    JOptionPane.showMessageDialog(null, "Não há foto 2");
+                }
+            }
+        });
+        
+        this.linkFoto3.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                try {
+                    File f = new File(acomodacao.getFotoExterna());
+                    java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+                    desktop.open(f);
+                }catch(Exception exc){
+                    JOptionPane.showMessageDialog(null, "Não há foto externa");
+                }
             }
         });
     }
@@ -88,19 +150,34 @@ public class FormDetalhesAcomodacao extends JInternalFrame {
         scrollPanelTxtDetalhes = new javax.swing.JScrollPane();
         txtDetalhes = new javax.swing.JTextArea();
         GoogleMaps = new javax.swing.JLabel();
+        lblFotos = new javax.swing.JLabel();
+        linkFoto1 = new javax.swing.JLabel();
+        linkFoto2 = new javax.swing.JLabel();
+        linkFoto3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         txtDetalhes.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
         txtDetalhes.setColumns(20);
         txtDetalhes.setEditable(false);
-        txtDetalhes.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        txtDetalhes.setFont(new java.awt.Font("Tahoma", 1, 13));
         txtDetalhes.setLineWrap(true);
         txtDetalhes.setRows(5);
         scrollPanelTxtDetalhes.setViewportView(txtDetalhes);
 
         GoogleMaps.setForeground(java.awt.Color.blue);
         GoogleMaps.setText("Clique aqui para ver a localização");
+
+        lblFotos.setText("Fotos:");
+
+        linkFoto1.setForeground(java.awt.Color.blue);
+        linkFoto1.setText("(1)");
+
+        linkFoto2.setForeground(java.awt.Color.blue);
+        linkFoto2.setText("(2)");
+
+        linkFoto3.setForeground(java.awt.Color.blue);
+        linkFoto3.setText("(3)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,6 +188,16 @@ public class FormDetalhesAcomodacao extends JInternalFrame {
                 .addContainerGap()
                 .addComponent(GoogleMaps)
                 .addContainerGap(231, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblFotos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(linkFoto1)
+                .addGap(18, 18, 18)
+                .addComponent(linkFoto2)
+                .addGap(18, 18, 18)
+                .addComponent(linkFoto3)
+                .addContainerGap(275, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +205,13 @@ public class FormDetalhesAcomodacao extends JInternalFrame {
                 .addComponent(scrollPanelTxtDetalhes, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(GoogleMaps)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFotos)
+                    .addComponent(linkFoto1)
+                    .addComponent(linkFoto2)
+                    .addComponent(linkFoto3))
+                .addContainerGap())
         );
 
         pack();
@@ -129,6 +222,10 @@ public class FormDetalhesAcomodacao extends JInternalFrame {
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel GoogleMaps;
+    private javax.swing.JLabel lblFotos;
+    private javax.swing.JLabel linkFoto1;
+    private javax.swing.JLabel linkFoto2;
+    private javax.swing.JLabel linkFoto3;
     private javax.swing.JScrollPane scrollPanelTxtDetalhes;
     private javax.swing.JTextArea txtDetalhes;
     // End of variables declaration//GEN-END:variables

@@ -82,6 +82,8 @@ public class Desktop extends JFrame implements ActionListener {
         if(UsuarioController.getUsuarioLogado().getTipo() == Usuario.TIPO_COLABORADOR){
             this.mColaborador.setEnabled(false);
         }
+		
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	/**
