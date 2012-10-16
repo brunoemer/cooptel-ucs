@@ -20,10 +20,11 @@ public class UsuarioPersistence {
 		PreparedStatement pstmt;
 		try {
 			pstmt = this.conn.prepareStatement("INSERT INTO usuario " +
-				"(login, senha) VALUES " +
-				"(?, ?)", Statement.RETURN_GENERATED_KEYS);
+				"(login, senha, tipo) VALUES " +
+				"(?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, a.getLogin());
 			pstmt.setString(2, a.getSenha());
+                        pstmt.setInt(3, a.getTipo());
 			int retorno = pstmt.executeUpdate();
 			
 			ResultSet rs = pstmt.getGeneratedKeys();
