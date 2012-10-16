@@ -416,11 +416,11 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
             	height = this.labelFotoVistaInterna2.getHeight();
             	this.caminhoFotoVistaInterna2 = file.getAbsolutePath();
             }
-            Image editedImage = icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);  
-            icon = new ImageIcon(editedImage);
+//            Image editedImage = icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);  
+//            icon = new ImageIcon(editedImage);
             JLabel lab = (JLabel)e.getSource();
-            lab.setIcon(icon);
-            this.labelFotoVistaExterna.setSize(width, height);
+//            lab.setIcon(icon);
+            lab.setText(file.getAbsolutePath());
         }
 	}
 
