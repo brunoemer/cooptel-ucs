@@ -22,10 +22,11 @@ public class Desktop extends JFrame implements ActionListener {
 	private JMenuItem miSair;
 	private JMenu mColaborador;
 	private JMenuItem miColaboradorCad;
-	private JMenuItem miColaboradorLista;
+//	private JMenuItem miColaboradorLista;
 	private JMenuItem miColaboradorLiberarAcesso;
 	private JMenu mAcomodacao;
 	private JMenuItem miAcomodacaoCad;
+	private JMenuItem miAcomodacaoLista;
 
 	private FrameCadastroColaborador cc;
 	private FrameCadastroAcomodacao ca;
@@ -50,9 +51,9 @@ public class Desktop extends JFrame implements ActionListener {
 		this.miColaboradorCad = new JMenuItem("Cadastro");
 		this.miColaboradorCad.addActionListener(this);
 		this.mColaborador.add(this.miColaboradorCad);
-		this.miColaboradorLista = new JMenuItem("Lista");
-		this.miColaboradorLista.addActionListener(this);
-		this.mColaborador.add(this.miColaboradorLista);
+//		this.miColaboradorLista = new JMenuItem("Lista");
+//		this.miColaboradorLista.addActionListener(this);
+//		this.mColaborador.add(this.miColaboradorLista);
 		this.miColaboradorLiberarAcesso = new JMenuItem("Liberar Acesso");
 		this.miColaboradorLiberarAcesso.addActionListener(this);
 		this.mColaborador.add(this.miColaboradorLiberarAcesso);
@@ -61,6 +62,9 @@ public class Desktop extends JFrame implements ActionListener {
 		this.miAcomodacaoCad = new JMenuItem("Cadastro");
 		this.miAcomodacaoCad.addActionListener(this);
 		this.mAcomodacao.add(this.miAcomodacaoCad);
+		this.miAcomodacaoLista = new JMenuItem("Lista");
+		this.miAcomodacaoLista.addActionListener(this);
+		this.mAcomodacao.add(this.miAcomodacaoLista);
 		
 		this.menuBar = new JMenuBar();
 		this.menuBar.add(this.mArquivo);
@@ -97,7 +101,7 @@ public class Desktop extends JFrame implements ActionListener {
 			this.ca = new FrameCadastroAcomodacao();
 			this.desktopPane.add(this.ca);
 			this.ca.setVisible(true);
-		} else if(e.getSource() == this.miColaboradorLista) {
+		} else if(e.getSource() == this.miAcomodacaoLista) {
 			this.lac = new FrameListaAcomodacao();
 			this.desktopPane.add(this.lac);
 			this.lac.setVisible(true);
