@@ -15,6 +15,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.ButtonGroup;
@@ -35,22 +36,26 @@ import model.Disponibilidade;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import controller.AcomodacaoController;
+import controller.ColaboradorController;
 
 public class FrameCadastroAcomodacao extends JInternalFrame implements ActionListener, MouseListener{
 	private GridBagConstraints labelConstraints, fieldConstraints;
-	private JLabel labelDescricao, labelEndereco, labelTipo, labelCafeDaManha, 
+	private JLabel labelColaborador, labelDescricao, labelEndereco, labelTipo, labelCafeDaManha, 
 				   labelValorDaDiaria, labelDisponibilidade, labelDisponibilidadeAte, 
 				   labelFotos, labelFotoVistaExterna, labelFotoVistaInterna1, labelFotoVistaInterna2,
-				   labelMapa, labelImagemMapa;
-	private JTextField textDescricao, textEndereco, textValorDaDiaria;
+				   labelMapa, labelLatitude, labelLongitude;
+	private JTextField textDescricao, textEndereco, textValorDaDiaria, textLatitude, textLongitude;
 	private JRadioButton radioSimples, radioDuplo, radioFamilia, radioSim, radioNao;
 	private JDatePickerImpl dateInicioDisponibilidade, dateFimDisponibilidade;
+	private JComboBox comboColaboradores;
 	private JButton buttonOK;
-	
-	private AcomodacaoController acomodacaoController;
 	private String caminhoFotoVistaExterna;
 	private String caminhoFotoVistaInterna1;
 	private String caminhoFotoVistaInterna2;
+	
+	private AcomodacaoController acomodacaoController;
+	private ColaboradorController colaboradorController;
+	private ArrayList<Colaborador> listaColaboradores;
 	
 	public FrameCadastroAcomodacao(){
 		this.inicializar();
@@ -61,11 +66,13 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 		this.setSize(700, 750);
 		this.setClosable(true);
 		this.setMaximizable(true);
-		
+
 		this.acomodacaoController = new AcomodacaoController();
+		this.colaboradorController = new ColaboradorController();
 		
 		this.inicializarConstraints();
 		this.setLayout(new GridBagLayout());
+		this.inicializarCamposColaborador();
 		this.inicializarCamposDescricao();
 		this.inicializarCamposEndereco();
 		this.inicializarCamposTipo();
@@ -92,6 +99,23 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 		this.fieldConstraints.weightx = 1.0;
 		this.fieldConstraints.insets = new Insets(10, 5, 0, 10);
 		this.fieldConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
+	}
+	
+	private void inicializarCamposColaborador(){
+		this.labelColaborador = new JLabel("Colaborador");
+		this.add(this.labelColaborador, this.labelConstraints);
+		this.labelConstraints.gridy++;
+		
+		this.listaColaboradores = this.colaboradorController.consultarAtivos();
+		this.comboColaboradores = new JComboBox();
+	    Iterator<Colaborador> it = this.listaColaboradores.iterator();  
+	    while(it.hasNext()){
+	    	Colaborador c = it.next();
+	        String colaboradorNome = c.getNome();
+	        this.comboColaboradores.addItem(colaboradorNome);
+	    }
+		this.add(this.comboColaboradores, this.fieldConstraints);
+		this.fieldConstraints.gridy++;
 	}
 	
 	private void inicializarCamposDescricao(){
@@ -236,17 +260,41 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 	}
 
 	private void inicializarCamposMapa(){
+//		this.labelMapa = new JLabel("Mapa");
+//		this.add(this.labelMapa, this.labelConstraints);
+//		this.labelConstraints.gridy++;
+//		
+//		this.fieldConstraints.fill = GridBagConstraints.NONE;
+//		ImageIcon icon = new ImageIcon("Mapa.png");
+//		this.labelImagemMapa = new JLabel(icon);
+//		this.labelImagemMapa.setBorder(new LineBorder(Color.BLACK));
+//		this.add(this.labelImagemMapa, this.fieldConstraints);
+//		this.fieldConstraints.fill = GridBagConstraints.HORIZONTAL;
+		
 		this.labelMapa = new JLabel("Mapa");
 		this.add(this.labelMapa, this.labelConstraints);
 		this.labelConstraints.gridy++;
+		this.fieldConstraints.gridy++;
 		
 		this.fieldConstraints.fill = GridBagConstraints.NONE;
-		ImageIcon icon = new ImageIcon("Mapa.png");
-		this.labelImagemMapa = new JLabel(icon);
-		this.labelImagemMapa.setBorder(new LineBorder(Color.BLACK));
-		this.add(this.labelImagemMapa, this.fieldConstraints);
-		this.fieldConstraints.fill = GridBagConstraints.HORIZONTAL;
+		this.fieldConstraints.ipadx = 100;
+		
+		this.labelLatitude = new JLabel("Latitude");
+		this.add(this.labelLatitude, this.labelConstraints);
+		this.labelConstraints.gridy++;
+		this.textLatitude = new JTextField();
+		this.add(this.textLatitude, this.fieldConstraints);
 		this.fieldConstraints.gridy++;
+
+		this.labelLongitude = new JLabel("Longitude");
+		this.add(this.labelLongitude, this.labelConstraints);
+		this.textLongitude = new JTextField();
+		this.add(this.textLongitude, this.fieldConstraints);
+		this.fieldConstraints.gridy++;
+		
+		this.fieldConstraints.fill = GridBagConstraints.HORIZONTAL;
+		this.fieldConstraints.ipadx = 0;
+		
 	}
 	
 	private void inicializarBotoes(){
@@ -261,7 +309,8 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 	
 	public void cadastrar() {
 		Acomodacao a = new Acomodacao();
-		a.setIdColaborador(1); // VER COMO FAZER
+		Colaborador c = this.listaColaboradores.get(this.comboColaboradores.getSelectedIndex());
+		a.setIdColaborador(c.getId());
 		int tipo = 0;
 		if(this.radioSimples.isSelected()){
 			tipo = 0;
@@ -272,11 +321,12 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 		}
 		a.setTipo(tipo);
 		a.setCafe(this.radioSim.isSelected());
-		a.setEndereco(textEndereco.getText());
-		a.setLatitude(0); // VER
-		a.setLongitude(0); // VER
-		a.setFoto1(""); // VER
-		a.setFoto2(""); // VER
+		a.setEndereco(this.textEndereco.getText());
+		a.setLatitude(Double.parseDouble(this.textLatitude.getText()));
+		a.setLongitude(Double.parseDouble(this.textLongitude.getText()));
+		a.setFoto1(this.caminhoFotoVistaInterna1);
+		a.setFoto2(this.caminhoFotoVistaInterna2);
+		a.setFotoExterna(this.caminhoFotoVistaExterna);
 		a.setValorDiario(Float.parseFloat(textValorDaDiaria.getText()));
 		a.setDescricao(textDescricao.getText());
 		GregorianCalendar data = (GregorianCalendar)this.dateInicioDisponibilidade.getJFormattedTextField().getValue();

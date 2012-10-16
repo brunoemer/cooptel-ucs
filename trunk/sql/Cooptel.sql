@@ -42,3 +42,5 @@ CREATE TABLE disponibilidade (
 );
 
 ALTER TABLE disponibilidade ADD CONSTRAINT FK_disponibilidade_0 FOREIGN KEY (id_acomodacao) REFERENCES acomodacao (id);
+
+ALTER TABLE `acomodacao` ADD `foto_externa` VARCHAR( 250 ) NOT NULL AFTER `foto2`;
