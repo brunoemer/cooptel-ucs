@@ -44,3 +44,13 @@ CREATE TABLE disponibilidade (
 ALTER TABLE disponibilidade ADD CONSTRAINT FK_disponibilidade_0 FOREIGN KEY (id_acomodacao) REFERENCES acomodacao (id);
 
 ALTER TABLE `acomodacao` ADD `foto_externa` VARCHAR( 250 ) NOT NULL AFTER `foto2`;
+
+CREATE TABLE `cooptel`.`usuario` (
+  `id` INT UNSIGNED NOT NULL ,
+  `login` VARCHAR(32) NULL ,
+  `senha` VARCHAR(32) NULL ,
+  `tipo` TINYINT UNSIGNED NULL ,
+  PRIMARY KEY (`id`) )
+COMMENT = 'Tabela dos usuários do sistema.\nCampo tipo: 0 - Admin - 1 - Colaborador - 2 - Visitante';
+ALTER TABLE `cooptel`.`usuario` CHANGE COLUMN `id` `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT ;
+INSERT INTO `cooptel`.`usuario` (`id`, `login`,`senha`, `tipo`) VALUES (1, "admin", "admin", 0);
