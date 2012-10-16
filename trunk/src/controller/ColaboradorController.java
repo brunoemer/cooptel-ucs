@@ -29,6 +29,10 @@ public class ColaboradorController {
 	public Colaborador detalhar(Colaborador c) {
 		return this.colaboradorPersistence.consultar(c);
 	}
+        
+        public Colaborador detalhesPeloUsuario(Colaborador c) {
+		return this.colaboradorPersistence.consultarPeloUsuario(c);
+	}
 
 	public void liberar(Colaborador c) {
 		this.colaboradorPersistence.alterar(c);

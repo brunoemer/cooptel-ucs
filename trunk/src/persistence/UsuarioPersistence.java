@@ -50,7 +50,7 @@ public class UsuarioPersistence {
 			if(achou == false){
 				System.out.println("Nenhuma usuario encontrado");
 			}
-			usuario = new Usuario(res.getInt("id"), res.getString("login"), res.getString("senha"));
+			usuario = new Usuario(res.getInt("id"), res.getString("login"), res.getString("senha"), res.getInt("tipo"));
 		} catch (SQLException e) {
 			
 		}
@@ -69,7 +69,7 @@ public class UsuarioPersistence {
 			if(achou == false){
 				System.out.println("Nenhum usuario encontrado");
 			}
-			usuario = new Usuario(res.getInt("id"), res.getString("login"), res.getString("senha"));
+			usuario = new Usuario(res.getInt("id"), res.getString("login"), res.getString("senha"), res.getInt("tipo"));
 		} catch (SQLException e) {
 			
 		}
