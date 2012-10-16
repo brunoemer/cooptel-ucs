@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
@@ -247,7 +248,6 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 		this.labelFotoVistaExterna = new JLabel();
 		this.labelFotoVistaExterna.setBorder(new LineBorder(Color.BLACK));
 		this.labelFotoVistaExterna.addMouseListener(this);
-		labelFotoVistaExterna.setBounds(0, 0, 50, 30);
 		this.labelFotoVistaInterna1 = new JLabel();
 		this.labelFotoVistaInterna1.setBorder(new LineBorder(Color.BLACK));
 		this.labelFotoVistaInterna1.addMouseListener(this);
@@ -400,15 +400,27 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 		int returnVal = fc.showOpenDialog(this);
 
         if (returnVal == JFileChooser.APPROVE_OPTION) {
+        	int width, height;
             File file = fc.getSelectedFile();
             ImageIcon icon = new ImageIcon(file.getAbsolutePath());
-            ((JLabel)e.getSource()).setIcon(icon);
-            if (e.getSource() == this.labelFotoVistaExterna)
+            if (e.getSource() == this.labelFotoVistaExterna){
+            	width = this.labelFotoVistaExterna.getWidth();
+            	height = this.labelFotoVistaExterna.getHeight();
             	this.caminhoFotoVistaExterna = file.getAbsolutePath();
-            else if (e.getSource() == this.labelFotoVistaInterna1)
+            }else if (e.getSource() == this.labelFotoVistaInterna1){
+            	width = this.labelFotoVistaInterna1.getWidth();
+            	height = this.labelFotoVistaInterna1.getHeight();
             	this.caminhoFotoVistaInterna1 = file.getAbsolutePath();
-            else
-        		this.caminhoFotoVistaInterna2 = file.getAbsolutePath();
+            }else{
+            	width = this.labelFotoVistaInterna2.getWidth();
+            	height = this.labelFotoVistaInterna2.getHeight();
+            	this.caminhoFotoVistaInterna2 = file.getAbsolutePath();
+            }
+            Image editedImage = icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);  
+            icon = new ImageIcon(editedImage);
+            JLabel lab = (JLabel)e.getSource();
+            lab.setIcon(icon);
+            this.labelFotoVistaExterna.setSize(width, height);
         }
 	}
 
