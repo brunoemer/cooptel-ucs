@@ -4,6 +4,7 @@ public class Usuario {
     private int id;
     private String login;
     private String senha;
+    private int tipo;
     
     public Usuario(){}
 
@@ -35,5 +36,13 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
     }
 }
