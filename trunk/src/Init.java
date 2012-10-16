@@ -1,5 +1,6 @@
 import persistence.ConnectionSingleton;
 import view.Desktop;
+import view.FormLogin;
 
 
 public class Init {
@@ -9,9 +10,14 @@ public class Init {
 	 */
 	public static void main(String[] args) {
 		ConnectionSingleton.getInstance();
-		Desktop d = new Desktop();
+                FormLogin f = new FormLogin();
+		f.setVisible(true);
+		/*
+                Desktop d = new Desktop();
 		d.initComponents();
 		d.setVisible(true);
+                 * 
+                 */
 	}
 
 }
