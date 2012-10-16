@@ -8,7 +8,9 @@ import java.util.List;
 
 import com.mysql.jdbc.Connection;
 
+import model.Acomodacao;
 import model.Colaborador;
+import model.Disponibilidade;
 
 public class ColaboradorPersistence {
 	private Connection conn;
@@ -36,7 +38,25 @@ public class ColaboradorPersistence {
 		}
 		return lista;
 	}
-	
+
+	public Colaborador consultar(Colaborador c) {
+		Colaborador colaborador = null;
+		PreparedStatement pstmt;
+		try {
+			pstmt = this.conn.prepareStatement("SELECT * FROM colaborador WHERE id = ?");
+			pstmt.setInt(1, c.getId());
+			ResultSet res = pstmt.executeQuery();
+			boolean achou = res.next();
+			if(achou == false){
+				System.out.println("Nenhum colaborador encontrado");
+			}
+			colaborador = new Colaborador(res.getString("cpf"), res.getString("nome"), res.getString("endereco"), res.getString("email"), (res.getInt("ativo") == 1), res.getInt("id_usuario"), res.getInt("id"));
+		} catch (SQLException e) {
+			
+		}
+		return colaborador;
+	}
+
 	public ArrayList<Colaborador> buscarAtivoInativos(int ativo) {
 		ArrayList<Colaborador> lista = new ArrayList<Colaborador>();
 		PreparedStatement pstmt;
