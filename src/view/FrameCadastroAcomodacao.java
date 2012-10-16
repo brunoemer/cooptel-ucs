@@ -109,7 +109,16 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 		this.add(this.labelColaborador, this.labelConstraints);
 		this.labelConstraints.gridy++;
 		
-		this.listaColaboradores = this.colaboradorController.consultarAtivos();
+		ArrayList<Colaborador> lista = this.colaboradorController.consultarAtivos();
+		this.listaColaboradores = new ArrayList<Colaborador>();
+		if(UsuarioController.getUsuarioLogado().getTipo() == Usuario.TIPO_COLABORADOR){
+			for(int i = 0; i < lista.size(); i++){
+				Colaborador c = lista.get(i);
+				if(c.getIdUsuario() == UsuarioController.getUsuarioLogado().getId()){
+					this.listaColaboradores.add(c);
+				}
+			}
+		}
 		this.comboColaboradores = new JComboBox();
 	    Iterator<Colaborador> it = this.listaColaboradores.iterator();  
 	    while(it.hasNext()){

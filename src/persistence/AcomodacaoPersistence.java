@@ -25,7 +25,7 @@ public class AcomodacaoPersistence {
 		try {
 			pstmt = this.conn.prepareStatement("INSERT INTO acomodacao " +
 				"(id_colaborador, tipo, cafe, endereco, latitude, longitude, foto1, foto2, foto_externa, valordiario, descricao) VALUES " +
-				"(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+				"(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 			pstmt.setInt(1, a.getIdColaborador());
 			pstmt.setInt(2, a.getTipo());
 			pstmt.setInt(3, a.isCafe()?1:0);
