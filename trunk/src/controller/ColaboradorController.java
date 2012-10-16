@@ -26,6 +26,10 @@ public class ColaboradorController {
 		return this.colaboradorPersistence.buscarAtivoInativos(0);
 	}
 
+	public Colaborador detalhar(Colaborador c) {
+		return this.colaboradorPersistence.consultar(c);
+	}
+
 	public void liberar(Colaborador c) {
 		this.colaboradorPersistence.alterar(c);
 	}

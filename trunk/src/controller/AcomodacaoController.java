@@ -38,8 +38,8 @@ public class AcomodacaoController {
 		return null;
 	}
 
-	public void detalhar(Acomodacao a) {
-
+	public Acomodacao detalhar(Acomodacao a) {
+		return this.acomodacaoPersistence.consultar(a);
 	}
 
 }
