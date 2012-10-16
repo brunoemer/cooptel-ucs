@@ -51,6 +51,8 @@ CREATE TABLE `cooptel`.`usuario` (
   `senha` VARCHAR(32) NULL ,
   `tipo` TINYINT UNSIGNED NULL ,
   PRIMARY KEY (`id`) )
-COMMENT = 'Tabela dos usuários do sistema.\nCampo tipo: 0 - Admin - 1 - Colaborador - 2 - Visitante';
+COMMENT = 'Tabela dos usuï¿½rios do sistema.\nCampo tipo: 0 - Admin - 1 - Colaborador - 2 - Visitante';
 ALTER TABLE `cooptel`.`usuario` CHANGE COLUMN `id` `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT ;
 INSERT INTO `cooptel`.`usuario` (`id`, `login`,`senha`, `tipo`) VALUES (1, "admin", "admin", 0);
+
+ALTER TABLE `colaborador` ADD `id_usuario` INT NOT NULL AFTER `id` , ADD INDEX ( `id_usuario` );

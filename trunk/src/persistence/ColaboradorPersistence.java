@@ -26,7 +26,7 @@ public class ColaboradorPersistence {
 			boolean achou = false;
 			while(res.next()){
 				achou = true;
-				lista.add(new Colaborador(res.getString("cpf"), res.getString("nome"), res.getString("endereco"), res.getString("email"), (res.getInt("ativo") == 1), res.getInt("id")));
+				lista.add(new Colaborador(res.getString("cpf"), res.getString("nome"), res.getString("endereco"), res.getString("email"), (res.getInt("ativo") == 1), res.getInt("id_usuario"), res.getInt("id")));
 			}
 			if(!achou){
 				System.out.println("Nenhum colaborador encontrado");
@@ -46,7 +46,7 @@ public class ColaboradorPersistence {
 			boolean achou = false;
 			while(res.next()){
 				achou = true;
-				lista.add(new Colaborador(res.getString("cpf"), res.getString("nome"), res.getString("endereco"), res.getString("email"), (res.getInt("ativo") == 1), res.getInt("id")));
+				lista.add(new Colaborador(res.getString("cpf"), res.getString("nome"), res.getString("endereco"), res.getString("email"), (res.getInt("ativo") == 1), res.getInt("id_usuario"), res.getInt("id")));
 			}
 			if(!achou){
 				System.out.println("Nenhum colaborador encontrado");
@@ -60,13 +60,14 @@ public class ColaboradorPersistence {
 	public int alterar(Colaborador c) {
 		PreparedStatement pstmt;
 		try {
-			pstmt = this.conn.prepareStatement("UPDATE colaborador SET cpf = ?, nome = ?, endereco = ?, email = ?, ativo = ? WHERE id = ?");
+			pstmt = this.conn.prepareStatement("UPDATE colaborador SET cpf = ?, nome = ?, endereco = ?, email = ?, ativo = ?, id_usuario = ? WHERE id = ?");
 			pstmt.setString(1, c.getCpf());
 			pstmt.setString(2, c.getNome());
 			pstmt.setString(3, c.getEndereco());
 			pstmt.setString(4, c.getEmail());
 			pstmt.setInt(5, c.getAtivo()?1:0);
-			pstmt.setInt(6, c.getId());
+			pstmt.setInt(6, c.getIdUsuario());
+			pstmt.setInt(7, c.getId());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Problemas ao alterar colaborador");
@@ -77,12 +78,13 @@ public class ColaboradorPersistence {
 	public int inserir(Colaborador c) {
 		PreparedStatement pstmt;
 		try {
-			pstmt = this.conn.prepareStatement("INSERT INTO colaborador (cpf, nome, endereco, email, ativo) VALUES (?, ?, ?, ?, ?)");
+			pstmt = this.conn.prepareStatement("INSERT INTO colaborador (cpf, nome, endereco, email, ativo, id_usuario) VALUES (?, ?, ?, ?, ?, ?)");
 			pstmt.setString(1, c.getCpf());
 			pstmt.setString(2, c.getNome());
 			pstmt.setString(3, c.getEndereco());
 			pstmt.setString(4, c.getEmail());
 			pstmt.setInt(5, c.getAtivo()?1:0);
+			pstmt.setInt(6, c.getIdUsuario());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Problemas ao inserir colaborador: " + e.getMessage());

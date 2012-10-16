@@ -5,7 +5,7 @@ import model.Usuario;
 
 public class UsuarioController {
     
-        private static Usuario usuarioLogado;
+    private static Usuario usuarioLogado;
 
 	private UsuarioPersistence usuarioPersistence;
 
@@ -21,18 +21,18 @@ public class UsuarioController {
 		return usuarioPersistence.inserir(u);
 	}
         
-        public boolean logar(Usuario u){
-            Usuario usuario = usuarioPersistence.logar(u);
-            if(usuario != null){
-                UsuarioController.usuarioLogado = usuario;
-                return true;
-            } else {
-                return false;
-            }
+    public boolean logar(Usuario u){
+        Usuario usuario = usuarioPersistence.logar(u);
+        if(usuario != null){
+            UsuarioController.usuarioLogado = usuario;
+            return true;
+        } else {
+            return false;
         }
-        
-        /* Statics para usuário logado */
-        public static Usuario getUsuarioLogado(){
-            return UsuarioController.usuarioLogado;
-        }
+    }
+    
+    /* Statics para usuário logado */
+    public static Usuario getUsuarioLogado(){
+        return UsuarioController.usuarioLogado;
+    }
 }
