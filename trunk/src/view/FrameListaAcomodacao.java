@@ -145,8 +145,8 @@ public class FrameListaAcomodacao extends JInternalFrame implements ActionListen
 		if (index >= 0){
 			Acomodacao a = this.acomodacoes.get(index);
 			FormDetalhesAcomodacao da = new FormDetalhesAcomodacao(a);
-			da.setVisible(true);
 			this.getParent().add(da);
+			da.setVisible(true);
 		}
 		
 	}
