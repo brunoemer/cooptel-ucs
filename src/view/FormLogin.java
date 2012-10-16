@@ -10,8 +10,10 @@
  */
 package view;
 
+import controller.ColaboradorController;
 import controller.UsuarioController;
 import javax.swing.JOptionPane;
+import model.Colaborador;
 import model.Usuario;
 
 /**
@@ -121,9 +123,24 @@ public class FormLogin extends javax.swing.JFrame {
             this.txtSenha.setText("");
             this.txtLogin.requestFocus();
         } else {
+            if (UsuarioController.getUsuarioLogado().getTipo() == Usuario.TIPO_COLABORADOR) {
+                Colaborador colaborador = new Colaborador();
+                colaborador.setIdUsuario(UsuarioController.getUsuarioLogado().getId());
+                
+                ColaboradorController cc = new ColaboradorController();
+                colaborador = cc.detalhesPeloUsuario(colaborador);
+                
+                if (!colaborador.getAtivo()) {
+                    JOptionPane.showMessageDialog(this, "O Colaborador não está ativo.");
+                    System.exit(0);
+                }
+            }
+            
             Desktop d = new Desktop();
             d.initComponents();
             d.setVisible(true);
+            
+            this.dispose();
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 

@@ -12,10 +12,11 @@ public class Usuario {
     
     public Usuario(){}
 
-    public Usuario(int id, String login, String senha) {
+    public Usuario(int id, String login, String senha, int tipo) {
         this.id = id;
         this.login = login;
         this.senha = senha;
+        this.tipo = tipo;
     }
     
     public int getId() {
