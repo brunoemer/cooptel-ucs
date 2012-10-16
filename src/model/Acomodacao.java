@@ -13,6 +13,7 @@ public class Acomodacao {
 	private double longitude;
 	private String foto1;
 	private String foto2;
+	private String fotoExterna;
 	private float valordiario;
 	private String descricao;
 	private List<Disponibilidade> disponibilidades;
@@ -26,14 +27,15 @@ public class Acomodacao {
 		this.longitude = 0.00;
 		this.foto1 = "";
 		this.foto2 = "";
+		this.fotoExterna = "";
 		this.valordiario = 0;
 		this.descricao = "";
 		this.disponibilidades = new ArrayList<Disponibilidade>();
 	}
 	
 	public Acomodacao(int id_colaborador, int tipo, boolean cafe,
-			String endereco, double latitude, double longitude, String foto1,
-			String foto2, float valordiario, String descricao, int id, List<Disponibilidade> disponibilidades) {
+			String endereco, double latitude, double longitude, String foto1, String foto2, 
+			String fotoExterna, float valordiario, String descricao, int id, List<Disponibilidade> disponibilidades) {
 		super();
 		this.id_colaborador = id_colaborador;
 		this.tipo = tipo;
@@ -43,6 +45,7 @@ public class Acomodacao {
 		this.longitude = longitude;
 		this.foto1 = foto1;
 		this.foto2 = foto2;
+		this.fotoExterna = fotoExterna;
 		this.valordiario = valordiario;
 		this.descricao = descricao;
 		this.id = id;
@@ -121,6 +124,14 @@ public class Acomodacao {
 		this.foto2 = foto2;
 	}
 	
+	public String getFotoExterna() {
+		return fotoExterna;
+	}
+
+	public void setFotoExterna(String fotoExterna) {
+		this.fotoExterna = fotoExterna;
+	}
+
 	public float getValorDiario() {
 		return valordiario;
 	}

@@ -127,7 +127,7 @@ public class FrameLiberacaoAcesso extends JInternalFrame implements ItemListener
 		
 		int i = 0;
 		for (Colaborador c : this.colaboradores){
-			dados[i++] = new String[] { c.getCpf(), c.getNome(), c.getEmail(), c.getAtivo() ? "Sim" : "N�o" };
+			dados[i++] = new String[] { c.getCpf(), c.getNome(), c.getEmail(), c.getAtivo() ? "Sim" : "Não" };
 		}
 		
 		String[] colunas = new String[] { "CPF", "Nome", "E-mail", "Liberado" }; 

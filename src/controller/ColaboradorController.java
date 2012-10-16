@@ -17,9 +17,13 @@ public class ColaboradorController {
 	public ArrayList<Colaborador> consultar() {
 		return this.colaboradorPersistence.buscar();
 	}
-	
+
+	public ArrayList<Colaborador> consultarAtivos(){
+		return this.colaboradorPersistence.buscarAtivoInativos(1);
+	}
+
 	public ArrayList<Colaborador> consultarInativos(){
-		return this.colaboradorPersistence.buscarInativos();
+		return this.colaboradorPersistence.buscarAtivoInativos(0);
 	}
 
 	public void liberar(Colaborador c) {

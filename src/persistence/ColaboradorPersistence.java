@@ -37,11 +37,11 @@ public class ColaboradorPersistence {
 		return lista;
 	}
 	
-	public ArrayList<Colaborador> buscarInativos() {
+	public ArrayList<Colaborador> buscarAtivoInativos(int ativo) {
 		ArrayList<Colaborador> lista = new ArrayList<Colaborador>();
 		PreparedStatement pstmt;
 		try {
-			pstmt = this.conn.prepareStatement("SELECT * FROM colaborador WHERE ativo = 0");
+			pstmt = this.conn.prepareStatement("SELECT * FROM colaborador WHERE ativo = "+ativo);
 			ResultSet res = pstmt.executeQuery();
 			boolean achou = false;
 			while(res.next()){

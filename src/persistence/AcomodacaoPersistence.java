@@ -24,7 +24,7 @@ public class AcomodacaoPersistence {
 		PreparedStatement pstmt;
 		try {
 			pstmt = this.conn.prepareStatement("INSERT INTO acomodacao " +
-				"(id_colaborador, tipo, cafe, endereco, latitude, longitude, foto1, foto2, valordiario, descricao) VALUES " +
+				"(id_colaborador, tipo, cafe, endereco, latitude, longitude, foto1, foto2, foto_externa, valordiario, descricao) VALUES " +
 				"(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 			pstmt.setInt(1, a.getIdColaborador());
 			pstmt.setInt(2, a.getTipo());
@@ -34,8 +34,9 @@ public class AcomodacaoPersistence {
 			pstmt.setDouble(6, a.getLongitude());
 			pstmt.setString(7, a.getFoto1());
 			pstmt.setString(8, a.getFoto2());
-			pstmt.setFloat(9, a.getValorDiario());
-			pstmt.setString(10, a.getDescricao());
+			pstmt.setString(9, a.getFotoExterna());
+			pstmt.setFloat(10, a.getValorDiario());
+			pstmt.setString(11, a.getDescricao());
 			int retorno = pstmt.executeUpdate();
 			
 			ResultSet rs = pstmt.getGeneratedKeys();
@@ -59,7 +60,7 @@ public class AcomodacaoPersistence {
 			boolean achou = false;
 			while(res.next()){
 				achou = true;
-				lista.add(new Acomodacao(res.getInt("id_colaborador"), res.getInt("tipo"), (res.getInt("cafe") == 1), res.getString("endereco"), res.getDouble("latitude"), res.getDouble("longitude"), res.getString("foto1"), res.getString("foto2"), res.getFloat("valordiario"), res.getString("descricao"), res.getInt("id"), new ArrayList<Disponibilidade>()));
+				lista.add(new Acomodacao(res.getInt("id_colaborador"), res.getInt("tipo"), (res.getInt("cafe") == 1), res.getString("endereco"), res.getDouble("latitude"), res.getDouble("longitude"), res.getString("foto1"), res.getString("foto2"), res.getString("foto_externa"), res.getFloat("valordiario"), res.getString("descricao"), res.getInt("id"), new ArrayList<Disponibilidade>()));
 			}
 			if(!achou){
 				System.out.println("Nenhuma acomodacao encontrado");
@@ -81,7 +82,7 @@ public class AcomodacaoPersistence {
 			if(achou == false){
 				System.out.println("Nenhuma acomodacao encontrado");
 			}
-			acomodacao = new Acomodacao(res.getInt("id_colaborador"), res.getInt("tipo"), (res.getInt("cafe") == 1), res.getString("endereco"), res.getDouble("latitude"), res.getDouble("longitude"), res.getString("foto1"), res.getString("foto2"), res.getFloat("valordiario"), res.getString("descricao"), res.getInt("id"), new ArrayList<Disponibilidade>());
+			acomodacao = new Acomodacao(res.getInt("id_colaborador"), res.getInt("tipo"), (res.getInt("cafe") == 1), res.getString("endereco"), res.getDouble("latitude"), res.getDouble("longitude"), res.getString("foto1"), res.getString("foto2"), res.getString("foto_externa"), res.getFloat("valordiario"), res.getString("descricao"), res.getInt("id"), new ArrayList<Disponibilidade>());
 		} catch (SQLException e) {
 			
 		}
