@@ -27,7 +27,7 @@ public class Desktop extends JFrame implements ActionListener {
 
 	private FrameCadastroColaborador cc;
 	private FrameCadastroAcomodacao ca;
-	private FrameLiberacaoAcesso la;
+//	private FrameLiberacaoAcesso la;
 	
 	/**
 	 * Metodo que inicia os componentes
@@ -54,7 +54,7 @@ public class Desktop extends JFrame implements ActionListener {
 		this.miColaboradorLiberarAcesso.addActionListener(this);
 		this.mColaborador.add(this.miColaboradorLiberarAcesso);
 		
-		this.mAcomodacao = new JMenu("Acomodação");
+		this.mAcomodacao = new JMenu("AcomodaÃ§Ã£o");
 		this.miAcomodacaoCad = new JMenuItem("Cadastro");
 		this.miAcomodacaoCad.addActionListener(this);
 		this.mAcomodacao.add(this.miAcomodacaoCad);
@@ -89,9 +89,9 @@ public class Desktop extends JFrame implements ActionListener {
 		} else if(e.getSource() == this.miColaboradorLista) {
 			
 		} else if (e.getSource() == this.miColaboradorLiberarAcesso){
-			this.la = new FrameLiberacaoAcesso();
-			this.la.setVisible(true);
-			desktopPane.add(this.la);
+//			this.la = new FrameLiberacaoAcesso();
+//			this.la.setVisible(true);
+//			desktopPane.add(this.la);
 		}
 	}
 	
