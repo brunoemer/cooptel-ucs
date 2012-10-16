@@ -106,7 +106,7 @@ public class FrameListaAcomodacao extends JInternalFrame implements ActionListen
 	private void inicializarDadosTable(){
 		this.acomodacoes = this.acomodacaoController.consultar();
 		
-		if (this.fieldPesquisar.getText() != ""){
+		if (!this.fieldPesquisar.getText().equalsIgnoreCase("")){
 			ArrayList<Acomodacao> remover = new ArrayList<Acomodacao>();
 			
 			for (Acomodacao a : this.acomodacoes){
