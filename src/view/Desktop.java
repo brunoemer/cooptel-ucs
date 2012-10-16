@@ -91,20 +91,20 @@ public class Desktop extends JFrame implements ActionListener {
 			this.acaoSair();
 		} else if(e.getSource() == this.miColaboradorCad) {
 			this.cc = new FrameCadastroColaborador();
-			this.cc.setVisible(true);
 			this.desktopPane.add(this.cc);
+			this.cc.setVisible(true);
 		} else if(e.getSource() == this.miAcomodacaoCad) {
 			this.ca = new FrameCadastroAcomodacao();
-			this.ca.setVisible(true);
 			this.desktopPane.add(this.ca);
+			this.ca.setVisible(true);
 		} else if(e.getSource() == this.miColaboradorLista) {
 			this.lac = new FrameListaAcomodacao();
-			this.lac.setVisible(true);
 			this.desktopPane.add(this.lac);
+			this.lac.setVisible(true);
 		} else if (e.getSource() == this.miColaboradorLiberarAcesso){
 			this.la = new FrameLiberacaoAcesso();
-			this.la.setVisible(true);
 			this.desktopPane.add(this.la);
+			this.la.setVisible(true);
 		}
 	}
 	
