@@ -1,6 +1,10 @@
 package model;
 
-public class Usuario {
+public class Usuario {    
+    public static int TIPO_ADMINISTRADOR = 0;
+    public static int TIPO_COLABORADOR = 1;
+    public static int TIPO_VISITANTE = 2;
+    
     private int id;
     private String login;
     private String senha;

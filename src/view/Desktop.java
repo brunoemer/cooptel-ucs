@@ -1,5 +1,6 @@
 package view;
 
+import controller.UsuarioController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -10,6 +11,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import model.Usuario;
 import persistence.ConnectionSingleton;
 
 public class Desktop extends JFrame implements ActionListener {
@@ -67,6 +69,14 @@ public class Desktop extends JFrame implements ActionListener {
 		
 		this.getContentPane().add(this.desktopPane);
 		this.setSize(1024, 900);
+                
+                if(UsuarioController.getUsuarioLogado().getTipo() == Usuario.TIPO_VISITANTE){
+                    this.miAcomodacaoCad.setEnabled(false);
+                }
+                
+                if(UsuarioController.getUsuarioLogado().getTipo() == Usuario.TIPO_COLABORADOR){
+                    this.mColaborador.setEnabled(false);
+                }
 	}
 	
 	/**
