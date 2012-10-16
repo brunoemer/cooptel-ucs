@@ -17,11 +17,31 @@ public class ColaboradorPersistence {
 		this.conn = ConnectionSingleton.getInstance().getConnnection();
 	}
 	
-	public List buscar() {
-		List<Colaborador> lista = new ArrayList<Colaborador>();
+	public ArrayList<Colaborador> buscar() {
+		ArrayList<Colaborador> lista = new ArrayList<Colaborador>();
 		PreparedStatement pstmt;
 		try {
 			pstmt = this.conn.prepareStatement("SELECT * FROM colaborador");
+			ResultSet res = pstmt.executeQuery();
+			boolean achou = false;
+			while(res.next()){
+				achou = true;
+				lista.add(new Colaborador(res.getString("cpf"), res.getString("nome"), res.getString("endereco"), res.getString("email"), (res.getInt("ativo") == 1), res.getInt("id")));
+			}
+			if(!achou){
+				System.out.println("Nenhum colaborador encontrado");
+			}
+		} catch (SQLException e) {
+			
+		}
+		return lista;
+	}
+	
+	public ArrayList<Colaborador> buscarInativos() {
+		ArrayList<Colaborador> lista = new ArrayList<Colaborador>();
+		PreparedStatement pstmt;
+		try {
+			pstmt = this.conn.prepareStatement("SELECT * FROM colaborador WHERE ativo = 0");
 			ResultSet res = pstmt.executeQuery();
 			boolean achou = false;
 			while(res.next()){

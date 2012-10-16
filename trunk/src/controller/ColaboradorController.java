@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import persistence.ColaboradorPersistence;
@@ -13,16 +14,19 @@ public class ColaboradorController {
 		this.colaboradorPersistence = new ColaboradorPersistence();
 	}
 
-	public List consultar() {
-		return null;
+	public ArrayList<Colaborador> consultar() {
+		return this.colaboradorPersistence.buscar();
+	}
+	
+	public ArrayList<Colaborador> consultarInativos(){
+		return this.colaboradorPersistence.buscarInativos();
 	}
 
 	public void liberar(Colaborador c) {
-
+		this.colaboradorPersistence.alterar(c);
 	}
 
 	public int cadastrar(Colaborador c) {
 		return colaboradorPersistence.inserir(c);
 	}
-
 }

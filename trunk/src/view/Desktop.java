@@ -21,11 +21,13 @@ public class Desktop extends JFrame implements ActionListener {
 	private JMenu mColaborador;
 	private JMenuItem miColaboradorCad;
 	private JMenuItem miColaboradorLista;
+	private JMenuItem miColaboradorLiberarAcesso;
 	private JMenu mAcomodacao;
 	private JMenuItem miAcomodacaoCad;
 
 	private FrameCadastroColaborador cc;
 	private FrameCadastroAcomodacao ca;
+	private FrameLiberacaoAcesso la;
 	
 	/**
 	 * Metodo que inicia os componentes
@@ -48,8 +50,11 @@ public class Desktop extends JFrame implements ActionListener {
 		this.miColaboradorLista = new JMenuItem("Lista");
 		this.miColaboradorLista.addActionListener(this);
 		this.mColaborador.add(this.miColaboradorLista);
+		this.miColaboradorLiberarAcesso = new JMenuItem("Liberar Acesso");
+		this.miColaboradorLiberarAcesso.addActionListener(this);
+		this.mColaborador.add(this.miColaboradorLiberarAcesso);
 		
-		this.mAcomodacao = new JMenu("AcomodaÃ§Ã£o");
+		this.mAcomodacao = new JMenu("Acomodação");
 		this.miAcomodacaoCad = new JMenuItem("Cadastro");
 		this.miAcomodacaoCad.addActionListener(this);
 		this.mAcomodacao.add(this.miAcomodacaoCad);
@@ -83,6 +88,10 @@ public class Desktop extends JFrame implements ActionListener {
 			desktopPane.add(this.ca);
 		} else if(e.getSource() == this.miColaboradorLista) {
 			
+		} else if (e.getSource() == this.miColaboradorLiberarAcesso){
+			this.la = new FrameLiberacaoAcesso();
+			this.la.setVisible(true);
+			desktopPane.add(this.la);
 		}
 	}
 	
