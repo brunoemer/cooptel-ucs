@@ -44,7 +44,7 @@ public class FrameLiberacaoAcesso extends JInternalFrame implements ItemListener
 	}
 	
 	private void inicializar(){
-		this.setTitle("LiberaÁ„o de Acesso");
+		this.setTitle("Libera√ß√£o de Acesso");
 		this.setSize(500, 300);
 		this.setClosable(true);
 		this.setMaximizable(true);
@@ -82,7 +82,7 @@ public class FrameLiberacaoAcesso extends JInternalFrame implements ItemListener
 		  }
 		);
 		
-		this.checkBoxNaoLiberados = new JCheckBox("N„o liberados");
+		this.checkBoxNaoLiberados = new JCheckBox("Nao liberados");
 		this.checkBoxNaoLiberados.addItemListener(this);
 		
 		Panel panel = new Panel();
@@ -127,7 +127,7 @@ public class FrameLiberacaoAcesso extends JInternalFrame implements ItemListener
 		
 		int i = 0;
 		for (Colaborador c : this.colaboradores){
-			dados[i++] = new String[] { c.getCpf(), c.getNome(), c.getEmail(), c.getAtivo() ? "Sim" : "N„o" };
+			dados[i++] = new String[] { c.getCpf(), c.getNome(), c.getEmail(), c.getAtivo() ? "Sim" : "NÔøΩo" };
 		}
 		
 		String[] colunas = new String[] { "CPF", "Nome", "E-mail", "Liberado" }; 
@@ -164,7 +164,7 @@ public class FrameLiberacaoAcesso extends JInternalFrame implements ItemListener
 					JOptionPane.showMessageDialog(this, "Colaborador liberado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else{
-					JOptionPane.showMessageDialog(this, "Este colaborador j· est· liberado!", "Erro", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(this, "Este colaborador j√° est√° liberado!", "Erro", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 			else{
