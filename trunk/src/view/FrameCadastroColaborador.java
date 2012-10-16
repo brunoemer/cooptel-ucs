@@ -44,6 +44,7 @@ public class FrameCadastroColaborador extends JInternalFrame implements ActionLi
 		this.setSize(400, 240);
 		this.setClosable(true);
 		this.setMaximizable(true);
+		this.setResizable(true);
 		
 		this.colaboradorController = new ColaboradorController();
 		this.usuarioController = new UsuarioController();

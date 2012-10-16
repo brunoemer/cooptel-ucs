@@ -52,6 +52,7 @@ public class FrameListaAcomodacao extends JInternalFrame implements ActionListen
 		this.setSize(700, 750);
 		this.setClosable(true);
 		this.setMaximizable(true);
+		this.setResizable(true);
 
 		this.acomodacaoController = new AcomodacaoController();
 		

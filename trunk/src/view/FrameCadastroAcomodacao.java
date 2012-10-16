@@ -69,6 +69,7 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 		this.setSize(700, 750);
 		this.setClosable(true);
 		this.setMaximizable(true);
+		this.setResizable(true);
 
 		this.acomodacaoController = new AcomodacaoController();
 		this.colaboradorController = new ColaboradorController();
@@ -111,12 +112,12 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 		
 		ArrayList<Colaborador> lista = this.colaboradorController.consultarAtivos();
 		this.listaColaboradores = new ArrayList<Colaborador>();
-		if(UsuarioController.getUsuarioLogado().getTipo() == Usuario.TIPO_COLABORADOR){
-			for(int i = 0; i < lista.size(); i++){
-				Colaborador c = lista.get(i);
-				if(c.getIdUsuario() == UsuarioController.getUsuarioLogado().getId()){
-					this.listaColaboradores.add(c);
-				}
+		for(int i = 0; i < lista.size(); i++){
+			Colaborador c = lista.get(i);
+			if(UsuarioController.getUsuarioLogado().getTipo() == Usuario.TIPO_ADMINISTRADOR ||
+				(UsuarioController.getUsuarioLogado().getTipo() == Usuario.TIPO_COLABORADOR &&
+				c.getIdUsuario() == UsuarioController.getUsuarioLogado().getId())){
+				this.listaColaboradores.add(c);
 			}
 		}
 		this.comboColaboradores = new JComboBox();

@@ -48,6 +48,7 @@ public class FrameLiberacaoAcesso extends JInternalFrame implements ItemListener
 		this.setSize(500, 300);
 		this.setClosable(true);
 		this.setMaximizable(true);
+		this.setResizable(true);
 
 		this.colaboradorController = new ColaboradorController();
 		

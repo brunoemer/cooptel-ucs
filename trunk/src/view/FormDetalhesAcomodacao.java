@@ -43,6 +43,7 @@ public class FormDetalhesAcomodacao extends JInternalFrame {
 		this.setSize(700, 750);
 		this.setClosable(true);
 		this.setMaximizable(true);
+		this.setResizable(true);
 
         ColaboradorController cc = new ColaboradorController();
         Colaborador colaborador = new Colaborador();
