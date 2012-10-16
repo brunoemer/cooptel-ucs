@@ -35,7 +35,7 @@ public class AcomodacaoController {
 	}
 
 	public List consultar() {
-		return null;
+		return this.acomodacaoPersistence.buscar();
 	}
 
 	public Acomodacao detalhar(Acomodacao a) {

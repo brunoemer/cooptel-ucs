@@ -29,6 +29,7 @@ public class Desktop extends JFrame implements ActionListener {
 
 	private FrameCadastroColaborador cc;
 	private FrameCadastroAcomodacao ca;
+	private FrameListaAcomodacao lac;
 	private FrameLiberacaoAcesso la;
 	
 	/**
@@ -69,14 +70,14 @@ public class Desktop extends JFrame implements ActionListener {
 		
 		this.getContentPane().add(this.desktopPane);
 		this.setSize(1024, 900);
-                
-                if(UsuarioController.getUsuarioLogado().getTipo() == Usuario.TIPO_VISITANTE){
-                    this.miAcomodacaoCad.setEnabled(false);
-                }
-                
-                if(UsuarioController.getUsuarioLogado().getTipo() == Usuario.TIPO_COLABORADOR){
-                    this.mColaborador.setEnabled(false);
-                }
+		
+        if(UsuarioController.getUsuarioLogado().getTipo() == Usuario.TIPO_VISITANTE){
+            this.miAcomodacaoCad.setEnabled(false);
+        }
+        
+        if(UsuarioController.getUsuarioLogado().getTipo() == Usuario.TIPO_COLABORADOR){
+            this.mColaborador.setEnabled(false);
+        }
 	}
 	
 	/**
@@ -91,17 +92,19 @@ public class Desktop extends JFrame implements ActionListener {
 		} else if(e.getSource() == this.miColaboradorCad) {
 			this.cc = new FrameCadastroColaborador();
 			this.cc.setVisible(true);
-			desktopPane.add(this.cc);
+			this.desktopPane.add(this.cc);
 		} else if(e.getSource() == this.miAcomodacaoCad) {
 			this.ca = new FrameCadastroAcomodacao();
 			this.ca.setVisible(true);
-			desktopPane.add(this.ca);
+			this.desktopPane.add(this.ca);
 		} else if(e.getSource() == this.miColaboradorLista) {
-			
+			this.lac = new FrameListaAcomodacao();
+			this.lac.setVisible(true);
+			this.desktopPane.add(this.lac);
 		} else if (e.getSource() == this.miColaboradorLiberarAcesso){
 			this.la = new FrameLiberacaoAcesso();
 			this.la.setVisible(true);
-			desktopPane.add(this.la);
+			this.desktopPane.add(this.la);
 		}
 	}
 	

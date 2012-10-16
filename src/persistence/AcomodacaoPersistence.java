@@ -71,6 +71,26 @@ public class AcomodacaoPersistence {
 		return lista;
 	}
 
+//	public List buscar(String busca) {
+//		List<Acomodacao> lista = new ArrayList<Acomodacao>();
+//		PreparedStatement pstmt;
+//		try {
+//			pstmt = this.conn.prepareStatement("SELECT * FROM acomodacao WHERE endereco LIKE '%"+busca+"%' OR descricao LIKE '%"+busca+"%'");
+//			ResultSet res = pstmt.executeQuery();
+//			boolean achou = false;
+//			while(res.next()){
+//				achou = true;
+//				lista.add(new Acomodacao(res.getInt("id_colaborador"), res.getInt("tipo"), (res.getInt("cafe") == 1), res.getString("endereco"), res.getDouble("latitude"), res.getDouble("longitude"), res.getString("foto1"), res.getString("foto2"), res.getString("foto_externa"), res.getFloat("valordiario"), res.getString("descricao"), res.getInt("id"), new ArrayList<Disponibilidade>()));
+//			}
+//			if(!achou){
+//				System.out.println("Nenhuma acomodacao encontrado");
+//			}
+//		} catch (SQLException e) {
+//			
+//		}
+//		return lista;
+//	}
+
 	public Acomodacao consultar(Acomodacao a) {
 		Acomodacao acomodacao = null;
 		PreparedStatement pstmt;
