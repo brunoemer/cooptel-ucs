@@ -57,7 +57,7 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 	}
 	
 	private void inicializar(){
-		this.setTitle("Cadastro de AcomodaÁ„o");
+		this.setTitle("Cadastro de Acomoda√ß√£o");
 		this.setSize(700, 750);
 		this.setClosable(true);
 		this.setMaximizable(true);
@@ -95,7 +95,7 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 	}
 	
 	private void inicializarCamposDescricao(){
-		this.labelDescricao = new JLabel("DescriÁ„o");
+		this.labelDescricao = new JLabel("Descri√ß√£o");
 		this.add(this.labelDescricao, this.labelConstraints);
 		this.labelConstraints.gridy++;
 		
@@ -105,7 +105,7 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 	}
 	
 	private void inicializarCamposEndereco() {
-		this.labelEndereco = new JLabel("EndereÁo");
+		this.labelEndereco = new JLabel("Endere√ßo");
 		this.add(this.labelEndereco, this.labelConstraints);
 		this.labelConstraints.gridy++;
 		
@@ -124,7 +124,7 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 		
 		this.radioSimples = new JRadioButton("Simples");
 		this.radioDuplo = new JRadioButton("Duplo");
-		this.radioFamilia = new JRadioButton("FamÌlia");
+		this.radioFamilia = new JRadioButton("Fam√≠lia");
 		
 		panel.add(this.radioSimples);
 		panel.add(this.radioDuplo);
@@ -140,7 +140,7 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 	}
 
 	private void inicializarCamposCafeDaManha(){
-		this.labelCafeDaManha = new JLabel("CafÈ da Manh„");
+		this.labelCafeDaManha = new JLabel("Caf√© da Manh√£");
 		this.add(this.labelCafeDaManha, this.labelConstraints);
 		this.labelConstraints.gridy++;
 		
@@ -162,7 +162,7 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 	}
 
 	private void inicializarCamposValorDaDiaria(){
-		this.labelValorDaDiaria = new JLabel("Valor da Di·ria");
+		this.labelValorDaDiaria = new JLabel("Valor da Di√°ria");
 		this.add(this.labelValorDaDiaria, this.labelConstraints);
 		this.labelConstraints.gridy++;
 		
@@ -184,7 +184,7 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 		panel.setLayout(new FlowLayout(FlowLayout.LEADING, 10, 0));
 		
 		this.dateInicioDisponibilidade = new JDatePickerImpl(new JDatePanelImpl(null));
-		this.labelDisponibilidadeAte = new JLabel("atÈ");
+		this.labelDisponibilidadeAte = new JLabel("at√©");
 		this.dateFimDisponibilidade = new JDatePickerImpl(new JDatePanelImpl(null));
 		
 		panel.add(dateInicioDisponibilidade, this.labelConstraints);
