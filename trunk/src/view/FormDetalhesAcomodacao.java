@@ -14,6 +14,9 @@ import controller.ColaboradorController;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URI;
+
+import javax.swing.JInternalFrame;
+
 import model.Acomodacao;
 import model.Colaborador;
 
@@ -21,7 +24,7 @@ import model.Colaborador;
  *
  * @author glauberc
  */
-public class FormDetalhesAcomodacao extends javax.swing.JFrame {
+public class FormDetalhesAcomodacao extends JInternalFrame {
     
     private Acomodacao acomodacao;
 
@@ -34,6 +37,11 @@ public class FormDetalhesAcomodacao extends javax.swing.JFrame {
     }
     
     private void populateText(){
+    	this.setTitle("Liberação de Acesso");
+		this.setSize(700, 750);
+		this.setClosable(true);
+		this.setMaximizable(true);
+
         ColaboradorController cc = new ColaboradorController();
         Colaborador colaborador = new Colaborador();
         colaborador.setId(this.acomodacao.getIdColaborador());
