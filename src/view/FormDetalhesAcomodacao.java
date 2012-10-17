@@ -76,7 +76,7 @@ public class FormDetalhesAcomodacao extends JInternalFrame {
             public void mousePressed(MouseEvent e) {
                 java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
                 try {
-                    URI uri = new URI("http://maps.google.com.br/maps?hl=pt-BR&ll=-28.772474,-52.371826");
+                    URI uri = new URI("http://maps.google.com.br/maps?hl=pt-BR&ll="+acomodacao.getLatitude()+","+acomodacao.getLongitude());
                     desktop.browse(uri);
                 }catch(Exception exc){}
             }
@@ -91,21 +91,7 @@ public class FormDetalhesAcomodacao extends JInternalFrame {
                     java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
                     desktop.open(f);
                 }catch(Exception exc){
-                    JOptionPane.showMessageDialog(null, "Não há foto 1");
-                }
-            }
-        });
-        
-        this.linkFoto1.addMouseListener(new MouseAdapter() {
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                try {
-                    File f = new File(acomodacao.getFoto1());
-                    java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
-                    desktop.open(f);
-                }catch(Exception exc){
-                    JOptionPane.showMessageDialog(null, "Não há foto 1");
+                    JOptionPane.showMessageDialog(null, "Não há foto 1 ");
                 }
             }
         });
