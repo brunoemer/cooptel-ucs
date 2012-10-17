@@ -66,7 +66,7 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 	
 	private void inicializar(){
 		this.setTitle("Cadastro de Acomodação");
-		this.setSize(700, 750);
+		this.setSize(700, 600);
 		this.setClosable(true);
 		this.setMaximizable(true);
 		this.setResizable(true);
@@ -297,7 +297,7 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 		this.fieldConstraints.gridy++;
 		
 		this.fieldConstraints.fill = GridBagConstraints.NONE;
-		this.fieldConstraints.ipadx = 100;
+		this.fieldConstraints.ipadx = 150;
 		
 		this.labelLatitude = new JLabel("Latitude");
 		this.add(this.labelLatitude, this.labelConstraints);
