@@ -87,11 +87,11 @@ public class FormDetalhesAcomodacao extends JInternalFrame {
             @Override
             public void mousePressed(MouseEvent e) {
                 try {
-                    File f = new File(acomodacao.getFoto1());
+                    File f = new File(acomodacao.getFotoExterna());
                     java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
                     desktop.open(f);
                 }catch(Exception exc){
-                    JOptionPane.showMessageDialog(null, "Não há foto 1 ");
+                    JOptionPane.showMessageDialog(null, "Não há foto externa");
                 }
             }
         });
@@ -101,11 +101,11 @@ public class FormDetalhesAcomodacao extends JInternalFrame {
             @Override
             public void mousePressed(MouseEvent e) {
                 try {
-                    File f = new File(acomodacao.getFoto2());
+                    File f = new File(acomodacao.getFoto1());
                     java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
                     desktop.open(f);
                 }catch(Exception exc){
-                    JOptionPane.showMessageDialog(null, "Não há foto 2");
+                    JOptionPane.showMessageDialog(null, "Não há foto 1");
                 }
             }
         });
@@ -115,11 +115,11 @@ public class FormDetalhesAcomodacao extends JInternalFrame {
             @Override
             public void mousePressed(MouseEvent e) {
                 try {
-                    File f = new File(acomodacao.getFotoExterna());
+                    File f = new File(acomodacao.getFoto2());
                     java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
                     desktop.open(f);
                 }catch(Exception exc){
-                    JOptionPane.showMessageDialog(null, "Não há foto externa");
+                    JOptionPane.showMessageDialog(null, "Não há foto 2");
                 }
             }
         });
@@ -158,13 +158,13 @@ public class FormDetalhesAcomodacao extends JInternalFrame {
         lblFotos.setText("Fotos:");
 
         linkFoto1.setForeground(java.awt.Color.blue);
-        linkFoto1.setText("(1)");
+        linkFoto1.setText("(Foto externa)");
 
         linkFoto2.setForeground(java.awt.Color.blue);
-        linkFoto2.setText("(2)");
+        linkFoto2.setText("(Foto interna 1)");
 
         linkFoto3.setForeground(java.awt.Color.blue);
-        linkFoto3.setText("(3)");
+        linkFoto3.setText("(Foto interna 2)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
