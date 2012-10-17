@@ -49,7 +49,7 @@ public class FrameListaAcomodacao extends JInternalFrame implements ActionListen
 	
 	private void inicializar(){
 		this.setTitle("Lista acomodação");
-		this.setSize(700, 750);
+		this.setSize(700, 600);
 		this.setClosable(true);
 		this.setMaximizable(true);
 		this.setResizable(true);
