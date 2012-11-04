@@ -25,6 +25,8 @@ public class FormLogin extends javax.swing.JFrame {
     /** Creates new form FormLogin */
     public FormLogin() {
         initComponents();
+        
+        this.setLocationRelativeTo(null);
     }
 
     /** This method is called from within the constructor to
@@ -35,17 +37,17 @@ public class FormLogin extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        lblTitulo = new javax.swing.JLabel();
+    	lblTitulo = new javax.swing.JLabel();
         txtLogin = new javax.swing.JTextField();
         lblLogin = new javax.swing.JLabel();
         lblSenha = new javax.swing.JLabel();
         txtSenha = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Cooptel - Login");
-        setName("frameLogin"); // NOI18N
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        this.setTitle("Cooptel - Login");
+        this.setName("frameLogin"); // NOI18N
+        this.setResizable(false);
 
         lblTitulo.setText("Efetue seu Login para ter acesso ao sistema");
 
