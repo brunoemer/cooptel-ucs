@@ -327,7 +327,56 @@ public class FrameCadastroAcomodacao extends JInternalFrame implements ActionLis
 		this.fieldConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
 	}
 	
+	private boolean validarCampos(){
+		
+		if (this.textDescricao.getText().equals("")){
+			JOptionPane.showMessageDialog(this, "Favor informar a descrição!", "Dados incompletos", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		
+		if (this.textEndereco.getText().equals("")){
+			JOptionPane.showMessageDialog(this, "Favor informar o endereço!", "Dados incompletos", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		
+		if (!this.radioSimples.isSelected() && !this.radioDuplo.isSelected() && !this.radioFamilia.isSelected()){
+			JOptionPane.showMessageDialog(this, "Favor selecionar o tipo de acomodação!", "Dados incompletos", JOptionPane.ERROR_MESSAGE);
+			return false;	
+		}
+		
+		if (!this.radioSim.isSelected() && !this.radioNao.isSelected()){
+			JOptionPane.showMessageDialog(this, "Favor marcar se a acomdação possui café da manhã ou não!", "Dados incompletos", JOptionPane.ERROR_MESSAGE);
+			return false;	
+		}
+		
+		if (this.textValorDaDiaria.getText().equals("")){
+			JOptionPane.showMessageDialog(this, "Favor informar o valor da diária!", "Dados incompletos", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		
+		if (this.dateInicioDisponibilidade.getJFormattedTextField().getValue() == null){
+			JOptionPane.showMessageDialog(this, "Favor informar a data de início da disponibilidade!", "Dados incompletos", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		
+		if (this.dateFimDisponibilidade.getJFormattedTextField().getValue() == null){
+			JOptionPane.showMessageDialog(this, "Favor informar a data do fim da disponibilidade!", "Dados incompletos", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		
+		if (this.caminhoFotoVistaExterna == null || this.caminhoFotoVistaExterna.equals("")){
+			JOptionPane.showMessageDialog(this, "Favor selecionar a foto da vista externa!", "Dados incompletos", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		
+		return true;
+	}
+	
 	public void cadastrar() {
+		
+		if (!this.validarCampos())
+			return;
+		
 		Acomodacao a = new Acomodacao();
 		Colaborador c = this.listaColaboradores.get(this.comboColaboradores.getSelectedIndex());
 		a.setIdColaborador(c.getId());
