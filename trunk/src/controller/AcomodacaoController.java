@@ -84,6 +84,11 @@ public class AcomodacaoController {
     }
     
     public Acomodacao detalhar(Acomodacao a) {
-        return this.acomodacaoPersistence.consultar(a);
+        a = this.acomodacaoPersistence.consultar(a);
+        
+        List<Disponibilidade> disponibilidades = this.disponibilidadePersistence.buscar(a);
+        a.setDisponibilidades(disponibilidades);
+        
+        return a;
     }
 }

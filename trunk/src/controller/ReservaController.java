@@ -24,4 +24,8 @@ public class ReservaController {
         public List consultar(Usuario u) {
 		return this.reservaPersistence.buscar(u);
 	}
+        
+        public int cancelar(Reserva r){
+            return this.reservaPersistence.remover(r);
+        }
 }

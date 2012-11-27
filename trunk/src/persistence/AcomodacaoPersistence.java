@@ -107,7 +107,7 @@ public class AcomodacaoPersistence {
             if (valorDiariaInicial > 0 && valorDiariaFinal > valorDiariaInicial)
                 filtros.add(" valordiario BETWEEN " + valorDiariaInicial + " AND " + valorDiariaFinal + " ");
             
-            String comando = "SELECT * FROM acomodacao LEFT JOIN disponibilidade ON id_acomodacao = acomodacao.id ";
+            String comando = "SELECT * FROM acomodacao  ";
             
             if (!filtros.isEmpty()){
                 comando += " WHERE ";
@@ -144,7 +144,7 @@ public class AcomodacaoPersistence {
     public int alterar(Acomodacao a) {
         PreparedStatement pstmt;
 		try {
-			pstmt = this.conn.prepareStatement("UPDATE acomodacao SET" +
+			pstmt = this.conn.prepareStatement("UPDATE acomodacao SET " +
 				"id_colaborador = ?, tipo = ?, cafe = ?, endereco = ?, latitude = ?, longitude = ?, foto1 = ?, foto2 = ?, foto_externa = ?, valordiario = ?, descricao = ? " +
 				" WHERE id = ? AND id_colaborador = ?", Statement.RETURN_GENERATED_KEYS);
 			pstmt.setInt(1, a.getIdColaborador());
@@ -169,7 +169,7 @@ public class AcomodacaoPersistence {
 		   return retorno;
 
 		} catch (SQLException e) {
-			System.out.println("Problemas ao inserir acomodacao"+e.getMessage());
+			System.out.println("Problemas ao alterar acomodacao: "+e.getMessage());
 			return 0;
 		}
     }
