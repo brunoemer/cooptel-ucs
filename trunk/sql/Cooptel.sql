@@ -1,4 +1,4 @@
-CREATE TABLE colaborador (
+﻿CREATE TABLE colaborador (
  id INT NOT NULL,
  cpf CHAR(11),
  nome VARCHAR(250),
@@ -56,3 +56,15 @@ ALTER TABLE `cooptel`.`usuario` CHANGE COLUMN `id` `id` INT(10) UNSIGNED NOT NUL
 INSERT INTO `cooptel`.`usuario` (`id`, `login`,`senha`, `tipo`) VALUES (1, "admin", "admin", 0);
 
 ALTER TABLE `colaborador` ADD `id_usuario` INT NOT NULL AFTER `id` , ADD INDEX ( `id_usuario` );
+
+CREATE TABLE reserva (
+  id INT NOT NULL AUTO_INCREMENT,
+  id_acomodacao INT NOT NULL,
+  id_usuario INT UNSIGNED NOT NULL,
+  datainicio DATETIME NOT NULL,
+  datafim DATETIME NOT NULL,
+  valortotal FLOAT(10),
+  CONSTRAINT PK_reserva PRIMARY KEY (id),
+  CONSTRAINT FK_reserva_acomodacao FOREIGN KEY (id_acomodacao) REFERENCES acomodacao (id),
+  CONSTRAINT FK_reserva_usuario FOREIGN KEY (id_usuario) REFERENCES usuario (id)
+);
