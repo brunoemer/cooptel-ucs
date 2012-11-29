@@ -57,7 +57,7 @@ public class ColaboradorPersistence {
 		return colaborador;
 	}
         
-        public Colaborador consultarPeloUsuario(Colaborador c) {
+	public Colaborador consultarPeloUsuario(Colaborador c) {
 		Colaborador colaborador = null;
 		PreparedStatement pstmt;
 		try {

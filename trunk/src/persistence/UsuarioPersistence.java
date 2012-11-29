@@ -24,7 +24,7 @@ public class UsuarioPersistence {
 				"(?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, a.getLogin());
 			pstmt.setString(2, a.getSenha());
-                        pstmt.setInt(3, a.getTipo());
+            pstmt.setInt(3, a.getTipo());
 			int retorno = pstmt.executeUpdate();
 			
 			ResultSet rs = pstmt.getGeneratedKeys();
