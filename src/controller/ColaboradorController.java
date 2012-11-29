@@ -30,7 +30,7 @@ public class ColaboradorController {
 		return this.colaboradorPersistence.consultar(c);
 	}
         
-        public Colaborador detalhesPeloUsuario(Colaborador c) {
+	public Colaborador detalhesPeloUsuario(Colaborador c) {
 		return this.colaboradorPersistence.consultarPeloUsuario(c);
 	}
 

@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -21,7 +22,7 @@ import model.Visitante;
 import controller.UsuarioController;
 import controller.VisitanteController;
 
-public class FrameCadastroVisitante extends JInternalFrame implements ActionListener{
+public class FrameCadastroVisitante extends JFrame implements ActionListener{
 	private GridBagConstraints labelConstraints, fieldConstraints;
 	private JLabel labelNome, labelPais, labelUsuario, labelSenha;
 	private JTextField textNome, textPais, textUsuario;
@@ -37,10 +38,8 @@ public class FrameCadastroVisitante extends JInternalFrame implements ActionList
 	
 	private void inicializar(){
 		this.setTitle("Cadastro de Visitante");
-		this.setSize(400, 240);
-		this.setClosable(true);
-		this.setMaximizable(true);
-		this.setResizable(true);
+		this.setSize(400, 180);
+		this.setResizable(false);
 		
 		this.visitanteController = new VisitanteController();
 		this.usuarioController = new UsuarioController();
@@ -51,6 +50,7 @@ public class FrameCadastroVisitante extends JInternalFrame implements ActionList
 		this.inicializarCamposPais();
 		this.inicializarCamposUsuarioSenha();
 		this.inicializarBotoes();
+        this.setLocationRelativeTo(null);
 	}
 	
 	private void inicializarConstraints(){
@@ -119,7 +119,7 @@ public class FrameCadastroVisitante extends JInternalFrame implements ActionList
 		
 		Panel panel = new Panel();
 		panel.setLayout(new FlowLayout(FlowLayout.TRAILING));
-		this.buttonOK = new JButton("OK");
+		this.buttonOK = new JButton("Cadastrar");
 		this.buttonOK.addActionListener(this);
 		panel.add(this.buttonOK);
 		

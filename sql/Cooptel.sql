@@ -74,6 +74,5 @@ CREATE TABLE IF NOT EXISTS `visitante` (
   `id_usuario` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `pais_origem` varchar(255) NOT NULL,
-  CONSTRAINT PK_visitante PRIMARY KEY (id),
-  CONSTRAINT FK_visitante_usuario FOREIGN KEY (id_usuario) REFERENCES visitante (id)
+  CONSTRAINT PK_visitante PRIMARY KEY (id)
 ) ENGINE=InnoDB;

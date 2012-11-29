@@ -94,7 +94,7 @@ public class AcomodacaoPersistence {
         }
         
         private PreparedStatement montarComandoBuscaAvancada(String endereco, int tipo, int cafeDaManha, float valorDiariaInicial, float valorDiariaFinal) throws SQLException{
-            ArrayList<String> filtros = new ArrayList<>();
+            ArrayList<String> filtros = new ArrayList<String>();
             
             if (!endereco.isEmpty())
                 filtros.add(" endereco LIKE '%" + endereco + "%' ");

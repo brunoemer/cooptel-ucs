@@ -23,7 +23,6 @@ public class Desktop extends JFrame implements ActionListener {
     private JMenuItem miSair;
     private JMenu mColaborador;
     private JMenuItem miColaboradorCad;
-//	private JMenuItem miColaboradorLista;
     private JMenuItem miColaboradorLiberarAcesso;
     private JMenu mAcomodacao;
     private JMenuItem miAcomodacaoCad;
@@ -55,9 +54,6 @@ public class Desktop extends JFrame implements ActionListener {
         this.miColaboradorCad = new JMenuItem("Cadastro");
         this.miColaboradorCad.addActionListener(this);
         this.mColaborador.add(this.miColaboradorCad);
-//		this.miColaboradorLista = new JMenuItem("Lista");
-//		this.miColaboradorLista.addActionListener(this);
-//		this.mColaborador.add(this.miColaboradorLista);
         this.miColaboradorLiberarAcesso = new JMenuItem("Liberar Acesso");
         this.miColaboradorLiberarAcesso.addActionListener(this);
         this.mColaborador.add(this.miColaboradorLiberarAcesso);
@@ -87,6 +83,8 @@ public class Desktop extends JFrame implements ActionListener {
 
         if (UsuarioController.getUsuarioLogado().getTipo() == Usuario.TIPO_VISITANTE) {
             this.miAcomodacaoCad.setEnabled(false);
+            this.miAcomodacaoLista.setEnabled(false);
+            this.mColaborador.setEnabled(false);
         }
 
         if (UsuarioController.getUsuarioLogado().getTipo() == Usuario.TIPO_COLABORADOR) {
